@@ -1,0 +1,60 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr valign="top">
+			<td>
+        <h2>Employee Details:</h2>
+          <div class="input-field">
+            <%= form.label :first_name %>
+            <%= form.text_field :first_name %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :last_name %>
+            <%= form.text_field :last_name %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :ssn %>
+            <%= form.text_field :ssn %>
+          </div>
+        
+        	<div class="input-field">
+        		<%= form.label :date_of_birth %>
+        		<%= form.text_field :date_of_birth, prompt: "Date of Birth", class: "datepicker1", :value => (form.object.date_of_birth.strftime('%B %d, %Y') if form.object.date_of_birth != nil)%>
+        	</div>
+        
+          <div class="input-field">
+            <%= form.label :phone %>
+            <%= form.text_field :phone %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :role %><br/>
+            <%= form.select :role, ['employee', 'manager', 'admin'], :prompt => "Select Employee Role" %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :active %><br/>
+            <%= form.select :active, ['true', 'false'], :prompt => "Select true or false"  %>
+          </div>
+        
+          <div class="actions">
+            <%= form.submit :class=>"btn waves-effect waves-light" %>
+          	<%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
+          </div>
+        </td>
+      </tr>
+    </table>
+<% end %>

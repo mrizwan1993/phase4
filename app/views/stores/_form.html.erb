@@ -1,0 +1,70 @@
+<%= form_with(model: store, local: true) do |form| %>
+  <% if store.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(store.errors.count, "error") %> prohibited this store from being saved:</h2>
+
+      <ul>
+      <% store.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr valign="top">
+			<td>
+        <h2>Store Details:</h2>
+          <div class="input-field">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :street %>
+            <%= form.text_field :street %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :city %>
+            <%= form.text_field :city %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :state %><br/>
+            <%= form.select :state, ['PA', 'OH', 'WV'], :prompt => "Select State" %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :zip %>
+            <%= form.text_field :zip %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :phone %>
+            <%= form.text_field :phone %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :latitude %>
+            <%= form.text_field :latitude %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :longitude %>
+            <%= form.text_field :longitude %>
+          </div>
+        
+          <div class="input-field">
+            <%= form.label :active %><br/>
+            <%= form.select :active, ['true', 'false'], :prompt => "Select true or false" %>
+          </div>
+        
+          <div class="actions">
+    			  <%= form.submit :class=>"btn waves-effect waves-light" %>
+    			  <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
+  			  </div>
+      </td>
+    </tr>
+  </table>
+<% end %>

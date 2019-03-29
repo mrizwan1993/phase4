@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><%= link_to "List Stores", stores_path %></li>
+    <li><%= link_to "Add a Store", new_store_path %></li>
+  </ul>
+  
+  <ul id="dropdown2" class="dropdown-content">
+    <li><%= link_to "List Employees", employees_path %></li>
+    <li><%= link_to "Add an Employee", new_employee_path %></li>
+  </ul>
+  
+  <ul id="dropdown3" class="dropdown-content">
+    <li><%= link_to "List Assignments", assignments_path %></li>
+    <li><%= link_to "Add an Assignment", new_assignment_path %></li>
+  </ul>
+  
+  <nav>
+    <div class="nav-wrapper">
+    &nbsp&nbsp
+      <a href="/" class="brand-logo">A&M Creamery</a>
+      <ul class="right">
+      <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+    
+    
+    <!-- Dropdown Structure -->
+  </nav>
+
+  <div class="row">
+    <div class="col s8 center">
+      <!-- MAIN CONTENT GOES HERE -->
+      <%= yield %>
+    </div>
+      
+    <div class="col s1">
+    </div>
+    
+    <div class="col s3">
+    <!-- SIDEBAR CONTENT GOES HERE -->
+    <%= render partial: 'partials/quick_links' %>
+    </div>
+    
+  </div>
+    
+    <footer>
+      <div class="row">
+        <div class="col s8 center">
+        <%= render partial: 'partials/footer' %>
+        </div>
+      </div>
+    </footer>
+</body>
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+<% end %>
+</html>

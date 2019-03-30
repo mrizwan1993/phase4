@@ -38,6 +38,6 @@
 
 <%= javascript_include_tag "application" %>
 <% flash.each do |message_type, message| %>
-<%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded center-align', 4000)" %>
 <% end %>
 </html>

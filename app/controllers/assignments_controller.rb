@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.all
+    @assignments = Assignment.paginate(:page => params[:page]).per_page(10)
   end
 
   # GET /assignments/1

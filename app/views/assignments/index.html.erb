@@ -28,11 +28,14 @@
         <td class="heading"><%= assignment.employee.last_name %></td>
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= assignment_path(assignment) %>><i class="material-icons left">info</i></a></td>
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= edit_assignment_path(assignment) %>><i class="material-icons left">edit</i></a></td></td>
-        <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" data-confirm="Are you sure?", data-method="delete" href=<%= assignment %>><i class="material-icons left">delete</i></a></td>
+        <td class="heading"><%= button_to "Del", assignment, data: {confirm: "Are you sure?" }, method: :delete, :class=>"waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<span class="paginate">
+<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
 
     <footer class="page-footer" id="normal">
       <div class="container">

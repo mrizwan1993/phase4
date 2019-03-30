@@ -1,6 +1,9 @@
-<h1>Editing Assignment</h1>
+<h2 class="heading">Edit Assignment</h2>
+<div class="center-align">
+<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= @assignment %>>View Assignment</a></li>
+<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= assignments_path%>>List Assignments</a></li>
+</div>
+
 
 <%= render 'form', assignment: @assignment %>
 
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>

@@ -39,8 +39,28 @@ $(".dropdown-button").dropdown({
     hover: true,
     belowOrigin: true
 });
+$('.dropdown-trigger').dropdown({
+        belowOrigin: true
+});
 $('.collapsible').collapsible();
 $('.fixed-action-btn').floatingActionButton();
 $('.tooltipped').tooltip();
+
+var btn = $('#button');
+
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+  });
+
+  btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '300');
+  });
+
+
 })
 

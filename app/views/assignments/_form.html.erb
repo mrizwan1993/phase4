@@ -1,3 +1,5 @@
+<div class="container col s12 center">
+<div class="container">
 <%= form_with(model: assignment, local: true) do |form| %>
   <% if assignment.errors.any? %>
     <div id="error_explanation">
@@ -11,44 +13,53 @@
     </div>
   <% end %>
   
-  
-
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr valign="top">
 			<td>
-        <h2>Assignment Details:</h2>
-				<div class="input-field">
-				<%= form.label :start_date %>
+        <div class="input-field">
+				<%= form.label :start_date, :class=> "active heading" %>
 				<%= form.text_field :start_date, prompt: "Start Date", class: "datepicker", :value => (form.object.start_date.strftime('%B %d, %Y') if form.object.start_date != nil)%>
-				</div>
-      
-				<div class="input-field">
-				<%= form.label :end_date %>
+        </div>
+        
+        <div class="input-field">
+				<%= form.label :end_date, :class=> "active heading" %>
 				<%= form.text_field :end_date, prompt: "End Date", class: "datepicker", :value => (form.object.end_date.strftime('%B %d, %Y') if form.object.end_date != nil)%>
-				</div>
-      
-        <div class="input-field">
-          <%= form.label :pay_level %><br/>
+          </div>
+        
+          <div class="input-field">
+          <%= form.label :pay_level, :class=> "active heading" %>
           <%= form.select :pay_level, [1, 2, 3, 4, 5, 6], :prompt => "Select Pay Level (1 - 6)" %>
-        </div>
-      
-        <div class="input-field">
-          <%= form.label :store_id %>
+          </div>
+        
+          <div class="input-field">
+          <%= form.label :store_id, :class=> "active heading" %>
           <%= form.text_field :store_id %>
-        </div>
-      
-        <div class="input-field">
-          <%= form.label :employee_id %>
+          </div>
+        
+          <div class="input-field">
+          <%= form.label :employee_id, :class=> "active heading" %>
           <%= form.text_field :employee_id %>
-        </div>
-      
-        <div class="actions">
-  			  <%= form.submit :class=>"btn waves-effect waves-light" %>
-  			  <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
-			  </div>
+          </div>
+        
+        
+          <div class="actions center-align">
+    			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+    			  <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+  			  </div>
       </td>
     </tr>
   </table>
+  
+</div>
+</div>
+    <footer class="page-footer" id="form">
+      <div class="container">
+      <div class="row">
+        <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+        </div>
+      </div>
+      </div>
+    </footer>
+
 <% end %>
-
-

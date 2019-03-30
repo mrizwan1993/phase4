@@ -1,3 +1,4 @@
+<div class="container col s12 center">
 <div class="container">
 <%= form_with(model: store, local: true) do |form| %>
   <% if store.errors.any? %>
@@ -12,60 +13,73 @@
     </div>
   <% end %>
 
+
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr valign="top">
 			<td>
-          <div class="input-field col s6">
-            <%= form.label :name, :class=> "active" %>
+          <div class="input-field">
+            <%= form.label :name, :class=> "active heading" %>
             <%= form.text_field :name %>
           </div>
         
-          <div class="input-field col s6">
-            <%= form.label :street, :class=> "active" %>
+          <div class="input-field">
+            <%= form.label :street, :class=> "active heading" %>
             <%= form.text_field :street %>
           </div>
         
-          <div class="input-field col s6">
-            <%= form.label :city, :class=> "active" %>
+          <div class="input-field">
+            <%= form.label :city, :class=> "active heading" %>
             <%= form.text_field :city %>
           </div>
         
-          <div class="input-field col s6">
-            <%= form.label :state, :class=> "active" %><br/>
+          <div class="input-field">
+            <%= form.label :state, :class=> "active heading" %><br/>
             <%= form.select :state, ['PA', 'OH', 'WV'], :prompt => "Select State" %>
           </div>
         
-          <div class="input-field col s6">
-            <%= form.label :zip, :class=> "active" %>
+          <div class="input-field">
+            <%= form.label :zip, :class=> "active heading" %>
             <%= form.text_field :zip %>
           </div>
         
-          <div class="input-field col s6">
-            <%= form.label :phone, :class=> "active" %>
+          <div class="input-field">
+            <%= form.label :phone, :class=> "active heading" %>
             <%= form.text_field :phone %>
           </div>
         
           <div class="input-field">
-            <%= form.label :latitude, :class=> "active" %>
+            <%= form.label :latitude, :class=> "active heading" %>
             <%= form.text_field :latitude %>
           </div>
         
           <div class="input-field">
-            <%= form.label :longitude, :class=> "active" %>
+            <%= form.label :longitude, :class=> "active heading" %>
             <%= form.text_field :longitude %>
           </div>
         
           <div class="input-field">
-            <%= form.label :active, :class=> "active" %><br/>
+            <%= form.label :active, :class=> "active heading" %><br/>
             <%= form.select :active, ['true', 'false'], :prompt => "Select true or false" %>
           </div>
         
-          <div class="actions">
-    			  <%= form.submit :class=>"btn waves-effect waves-light" %>
-    			  <%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
+          <div class="actions center-align">
+    			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+    			  <%= link_to 'Cancel', stores_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
   			  </div>
       </td>
     </tr>
   </table>
+  
 </div>
+</div>
+    <footer class="page-footer" id="form">
+      <div class="container">
+      <div class="row">
+        <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+        </div>
+      </div>
+      </div>
+    </footer>
+
 <% end %>

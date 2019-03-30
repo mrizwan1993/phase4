@@ -21,20 +21,10 @@
       <div class="nav-wrapper">
         <img class="logo" src="/assets/Logo.png"></img>
         <a href="/" class="brand-logo center heading">A&M Creamery</a>
-        <!--<ul class="right">-->
-        <!-- Dropdown Trigger -->
-        <!--  <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--  <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--  <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--</ul>-->
       </div>
     
-    
-      <!-- Dropdown Structure -->
+  
     </nav>
-    <!--<div class="col s3 left">-->
-    <!--  <%= render partial: 'partials/quick_links' %>-->
-    <!--</div>-->
   </div>
   <div class="divider"></div>
     <div class="section">
@@ -56,12 +46,10 @@
                 <img class="card-image" src="/assets/store.png">
 
               </div>
-              <div class="card-content">
-                  <span class="card-title heading">Manage Stores</span>
-              </div>
-              <div class="card-action">
-                <%= link_to "Add a New Store", new_store_path %><br/><br/>
-                <%= link_to "View All Stores", stores_path %>
+              <div class="card-action center-align">
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_path %>>New Store</a></li>
+                <br/><br/>
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= stores_path %>>List All</a></li>
               </div>
             </div>
           </div>
@@ -85,12 +73,10 @@
                 <img class="card-image" src="/assets/employee.png">
 
               </div>
-              <div class="card-content">
-                  <span class="card-title heading">Manage Employees</span>
-              </div>
-              <div class="card-action">
-                <a href="employees/new" class="heading">Add a New Employee</a><br/><br/>
-                <a href="employees" class="heading">View All Employees</a>
+              <div class="card-action center-align">
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_employee_path %>>New Employee</a></li>
+                <br/><br/>
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= employees_path %>>List All</a></li>
               </div>
             </div>
           </div>
@@ -110,12 +96,10 @@
                 <img class="card-image" src="/assets/assignment.png">
 
               </div>
-              <div class="card-content">
-                  <span class="card-title heading">Manage Assignments</span>
-              </div>
-              <div class="card-action">
-                <a href="assignments/new" class="heading">Add a New Assignment</a><br/><br/>
-                <a href="assignments" class="heading">View All Assignments</a>
+              <div class="card-action center-align">
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_assignment_path %>>New Assgmt</a></li>
+                <br/><br/>
+                <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= assignments_path %>>List All</a></li>
               </div>
             </div>
           </div>
@@ -125,7 +109,7 @@
     
 
     
-    <footer>
+    <footer class="page-footer">
       <div class="row">
         <div class="col s12 center">
         <%= render partial: 'partials/footer' %>

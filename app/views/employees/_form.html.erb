@@ -1,3 +1,5 @@
+<div class="container col s12 center">
+<div class="container">
 <%= form_with(model: employee, local: true) do |form| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
@@ -14,47 +16,66 @@
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr valign="top">
 			<td>
-        <h2>Employee Details:</h2>
           <div class="input-field">
-            <%= form.label :first_name %>
+            <%= form.label :first_name, :class=> "active heading" %>
             <%= form.text_field :first_name %>
           </div>
         
           <div class="input-field">
-            <%= form.label :last_name %>
+            <%= form.label :last_name, :class=> "active heading" %>
             <%= form.text_field :last_name %>
           </div>
         
           <div class="input-field">
-            <%= form.label :ssn %>
+            <%= form.label :ssn, :class=> "active heading" %>
             <%= form.text_field :ssn %>
           </div>
         
-        	<div class="input-field">
-        		<%= form.label :date_of_birth %>
+          <div class="input-field">
+        		<%= form.label :date_of_birth, :class=> "active heading" %>
         		<%= form.text_field :date_of_birth, prompt: "Date of Birth", class: "datepicker1", :value => (form.object.date_of_birth.strftime('%B %d, %Y') if form.object.date_of_birth != nil)%>
-        	</div>
+          </div>
         
           <div class="input-field">
-            <%= form.label :phone %>
+            <%= form.label :phone, :class=> "active heading" %>
+            <%= form.text_field :phone %>
+          </div>
+        
+          <div class="input-field col s6">
+            <%= form.label :phone, :class=> "active heading" %>
             <%= form.text_field :phone %>
           </div>
         
           <div class="input-field">
-            <%= form.label :role %><br/>
+            <%= form.label :role, :class=> "active heading" %>
             <%= form.select :role, ['employee', 'manager', 'admin'], :prompt => "Select Employee Role" %>
           </div>
         
           <div class="input-field">
-            <%= form.label :active %><br/>
+            <%= form.label :active, :class=> "active heading" %><br/>
             <%= form.select :active, ['true', 'false'], :prompt => "Select true or false"  %>
           </div>
         
-          <div class="actions">
-            <%= form.submit :class=>"btn waves-effect waves-light" %>
-          	<%= link_to 'Cancel', assignments_path, :class => 'waves-effect waves-light btn red' %>
-          </div>
-        </td>
-      </tr>
-    </table>
+        
+          <div class="actions center-align">
+    			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+    			  <%= link_to 'Cancel', employees_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+  			  </div>
+      </td>
+    </tr>
+  </table>
+  
+</div>
+</div>
+    <footer class="page-footer" id="form">
+      <div class="container">
+      <div class="row">
+        <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+        </div>
+      </div>
+      </div>
+    </footer>
+
 <% end %>
+

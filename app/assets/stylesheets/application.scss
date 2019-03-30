@@ -78,5 +78,11 @@ body::after {
     max-width: 250px;
     padding-right: 10px;
 }
+
+.form{
+    box-sizing:border-box;
+    overflow:auto;
+    height:50px !important;
+}
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";

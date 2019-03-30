@@ -1,3 +1,4 @@
+<div class="container">
 <%= form_with(model: store, local: true) do |form| %>
   <% if store.errors.any? %>
     <div id="error_explanation">
@@ -14,49 +15,48 @@
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr valign="top">
 			<td>
-        <h2>Store Details:</h2>
-          <div class="input-field">
-            <%= form.label :name %>
+          <div class="input-field col s6">
+            <%= form.label :name, :class=> "active" %>
             <%= form.text_field :name %>
           </div>
         
-          <div class="input-field">
-            <%= form.label :street %>
+          <div class="input-field col s6">
+            <%= form.label :street, :class=> "active" %>
             <%= form.text_field :street %>
           </div>
         
-          <div class="input-field">
-            <%= form.label :city %>
+          <div class="input-field col s6">
+            <%= form.label :city, :class=> "active" %>
             <%= form.text_field :city %>
           </div>
         
-          <div class="input-field">
-            <%= form.label :state %><br/>
+          <div class="input-field col s6">
+            <%= form.label :state, :class=> "active" %><br/>
             <%= form.select :state, ['PA', 'OH', 'WV'], :prompt => "Select State" %>
           </div>
         
-          <div class="input-field">
-            <%= form.label :zip %>
+          <div class="input-field col s6">
+            <%= form.label :zip, :class=> "active" %>
             <%= form.text_field :zip %>
           </div>
         
-          <div class="input-field">
-            <%= form.label :phone %>
+          <div class="input-field col s6">
+            <%= form.label :phone, :class=> "active" %>
             <%= form.text_field :phone %>
           </div>
         
           <div class="input-field">
-            <%= form.label :latitude %>
+            <%= form.label :latitude, :class=> "active" %>
             <%= form.text_field :latitude %>
           </div>
         
           <div class="input-field">
-            <%= form.label :longitude %>
+            <%= form.label :longitude, :class=> "active" %>
             <%= form.text_field :longitude %>
           </div>
         
           <div class="input-field">
-            <%= form.label :active %><br/>
+            <%= form.label :active, :class=> "active" %><br/>
             <%= form.select :active, ['true', 'false'], :prompt => "Select true or false" %>
           </div>
         
@@ -67,4 +67,5 @@
       </td>
     </tr>
   </table>
+</div>
 <% end %>

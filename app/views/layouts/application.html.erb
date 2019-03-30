@@ -1,63 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+</style>
   <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-  <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li><%= link_to "List Stores", stores_path %></li>
-    <li><%= link_to "Add a Store", new_store_path %></li>
-  </ul>
-  
-  <ul id="dropdown2" class="dropdown-content">
-    <li><%= link_to "List Employees", employees_path %></li>
-    <li><%= link_to "Add an Employee", new_employee_path %></li>
-  </ul>
-  
-  <ul id="dropdown3" class="dropdown-content">
-    <li><%= link_to "List Assignments", assignments_path %></li>
-    <li><%= link_to "Add an Assignment", new_assignment_path %></li>
-  </ul>
-  
-  <nav>
-    <div class="nav-wrapper">
-    &nbsp&nbsp
-      <a href="/" class="brand-logo">A&M Creamery</a>
-      <ul class="right">
-      <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-    
-    
-    <!-- Dropdown Structure -->
-  </nav>
 
-  <div class="row">
-    <div class="col s8 center">
-      <!-- MAIN CONTENT GOES HERE -->
-      <%= yield %>
-    </div>
-      
-    <div class="col s1">
-    </div>
+
+  <div class = "row">
+
+ 
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo center">A&M Creamery</a>
+        <!--<ul class="right">-->
+        <!-- Dropdown Trigger -->
+        <!--  <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--  <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--  <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--</ul>-->
+      </div>
     
-    <div class="col s3">
-    <!-- SIDEBAR CONTENT GOES HERE -->
-    <%= render partial: 'partials/quick_links' %>
-    </div>
     
+      <!-- Dropdown Structure -->
+    </nav>
+    <!--<div class="col s3 left">-->
+    <!--  <%= render partial: 'partials/quick_links' %>-->
+    <!--</div>-->
   </div>
+  <div class="divider"></div>
+    <div class="section">
+      <h2 class="heading">Admin Controls</h2>
+    </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s4 left">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+
+    
+
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/store.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title">Manage Stores</span>
+              </div>
+              <div class="card-action">
+                <a href="stores/new" class="link">Add a New Store</a><br/><br/>
+                <a href="stores" class="link">View All Stores</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+
+
+    
+    <div class="col s4 center">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+            <!--<%= yield %>-->
+    
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/employee.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title">Manage Employees</span>
+              </div>
+              <div class="card-action">
+                <a href="employees/new">Add a New Employee</a><br/><br/>
+                <a href="employees">View All Employees</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    <div class="col s4 right">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+    
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/assignment.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title">Manage Assignments</span>
+              </div>
+              <div class="card-action">
+                <a href="assignments/new">Add a New Assignment</a><br/><br/>
+                <a href="assignments">View All Assignments</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
     
     <footer>
       <div class="row">
-        <div class="col s8 center">
+        <div class="col s12 center">
         <%= render partial: 'partials/footer' %>
         </div>
       </div>

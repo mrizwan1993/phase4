@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 #   get 'contracted' => 'books#contracted', as: :contracted_books
   
   # Set the root url
-  root to: 'stores#index', as: :home
+  root to: 'homepages#index', as: :home
   
 
 end

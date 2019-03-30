@@ -1,9 +1,64 @@
-$primary-color: #FFC107;
+$primary-color: #A53820;
 $button-height: 26px;
 $table-striped-color: #cfd8dc;
 #toast-container {
 left:1%;
 right: auto !important;
+}
+
+body::after {
+  background: url(/assets/A&M.png);
+  content: "";
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;   
+}
+
+.black-text li a{
+    font-family:"Trebuchet MS";
+    color:#A53820;
+ }
+ 
+.card-action{
+    text-align:center;
+    color:#A53820;
+}
+
+.card-title{
+    text-align:center;
+}
+
+.card-image{
+    width:70%;
+    height:70%;
+    margin-left: auto;
+	margin-right: auto;
+	display: block;
+
+
+}
+
+.heading{
+    font-family:"Trebuchet MS";
+    text-align:center;
+    color:#A53820;
+}
+
+.link{
+    font-family:"Trebuchet MS";
+        text-align:center;
+    color:#A53820;
+}
+
+.logo{
+    height: auto;
+    width: auto;
+    max-height: 64px;
+    max-width: 250px;
 }
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";

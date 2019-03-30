@@ -1,10 +1,47 @@
-<div class="card light-blue">
-  <div class="card-content white-text">
-    <span class="card-title">Quick Links</span>
-    <ul class="collection">
-      <li><%= link_to 'View All Stores', stores_path, :class => "collection-item" %></li>
-      <li><%= link_to 'View All Employees', employees_path, :class => "collection-item" %></li>
-      <li><%= link_to 'View All Assignments', assignments_path, :class => "collection-item" %></li>
-    </ul>
-  </div>
-</div>
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <a href="#user"><img class="circle" src="/assets/Logo.png"></a>
+    </div></li>
+    
+    <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Stores</div>
+      <div class="collapsible-body">
+        <ul>
+          <li class>
+            <%= link_to "View All Stores", stores_path %></li><br/>
+          </li>
+          
+          <li>
+            <%= link_to "Add a New Store", new_store_path %></li>
+          </li>
+        </ul></div>
+    </li>
+    
+    <li>
+      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Employees</div>
+      <div class="collapsible-body">
+        <ul>
+          <li>
+            <%= link_to "View All Employees", employees_path %></li><br/>
+          </li>
+          
+          <li>
+            <%= link_to "Add a New Employee", new_employee_path %></li>
+          </li>
+        </ul></div>
+    </li>
+    
+    <li>
+      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Assignments</div>
+      <div class="collapsible-body">
+        <ul>
+          <li>
+            <%= link_to "View All Assignments", assignments_path %></li><br/>
+          </li>
+          
+          <li>
+            <%= link_to "Add a New Assignment", new_assignment_path %></li>
+          </li>
+        </ul></div>
+    </li>

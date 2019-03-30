@@ -6,52 +6,45 @@
   a:visited {color: black;}   /* visited link */
   a:hover {color: black;}     /* mouse over link */
   a:active {color: black;}    /* selected link */
+  
+  nav ul li a{
+  color: white;
+} 
 </style>
   <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+  
+
+    <!-- Dropdown Structure -->
 
 
-  <div class = "row">
-
- 
-    <nav>
-      <div class="nav-wrapper">
-        <img class="logo" src="/assets/Logo.png"></img>
-        <a href="/" class="brand-logo center heading">A&M Creamery</a>
-        <!--<ul class="right">-->
-        <!-- Dropdown Trigger -->
-        <!--  <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--  <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--  <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>-->
-        <!--</ul>-->
-      </div>
-    
-    
-      <!-- Dropdown Structure -->
-    </nav>
-    <div class="col s3 left">
       <%= render partial: 'partials/quick_links' %>
-    </div>
 
 
     <!-- MAIN CONTENT GOES HERE -->
-  <div class="col s9 center">
+  <div class="container col s12 center">
   <%= yield %>
   </div>
     </div>
 
     
-    <footer>
+
+</body>
+
+    <footer class="page-footer">
+      <div class="container">
       <div class="row">
         <div class="col s12 center">
         <%= render partial: 'partials/footer' %>
         </div>
       </div>
+      </div>
     </footer>
-</body>
+
 <%= javascript_include_tag "application" %>
 <% flash.each do |message_type, message| %>
 <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>

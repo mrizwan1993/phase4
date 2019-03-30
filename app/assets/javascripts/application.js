@@ -35,9 +35,12 @@ $('.datepicker1').pickadate({
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
 });
-$(".dropdown-button").dropdown({ hover: true });
+$(".dropdown-button").dropdown({ 
+    hover: true,
+    belowOrigin: true
+});
 $('.collapsible').collapsible();
 $('.fixed-action-btn').floatingActionButton();
-
+$('.tooltipped').tooltip();
 })
 

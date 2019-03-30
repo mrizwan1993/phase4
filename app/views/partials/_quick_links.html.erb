@@ -1,46 +1,39 @@
-  <ul id="slide-out" class="sidenav sidenav-fixed">
-    <li><div class="user-view">
-    </div></li>
+  <ul id="dropdown1" class="dropdown-content">
+    <li class="waves-effect waves-red hoverable"><a href="stores/new"><i class="material-icons left">add_location</i>Add</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li class="waves-effect waves-red hoverable"><a href="stores/index"><i class="material-icons left">view_list</i>List</a></li>
+    <li class="divider" tabindex="-1"></li>
+  </ul>
+  
+  <ul id="dropdown2" class="dropdown-content">
+    <li class="waves-effect waves-red hoverable"><a href="stores/new"><i class="material-icons left">person_add</i>Add</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li class="waves-effect waves-red hoverable"><a href="stores/index"><i class="material-icons left">view_list</i>List</a></li>
+    <li class="divider" tabindex="-1"></li>
+  </ul>
+  
+  <ul id="dropdown3" class="dropdown-content">
+    <li class="waves-effect waves-red hoverable"><a href="assignments/new"><i class="material-icons left">note_add</i>Add</a></li>
+    <li class="divider" tabindex="-1"></li>
+    <li class="waves-effect waves-red hoverable"><a href="assignments/index"><i class="material-icons left">view_list</i>List</a></li>
+    <li class="divider" tabindex="-1"></li>
+  </ul>
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo heading">A&M Creamery</a>
+        <ul class="right">
+          <li><a class="dropdown-button white-text" href="/stores" data-activates="dropdown1"><i class="material-icons left">local_mall</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button white-text" href="/employees" data-activates="dropdown2"><i class="material-icons left">person</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button white-text" href="/assignments" data-activates="dropdown3"><i class="material-icons left">work</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+      </div>
+    </div>
     
-    <ul class="collapsible popout">
-    <li>
-      <div class="collapsible-header hoverable heading"><i class="material-icons" >dashboard</i>Manage Stores</div>
-      <div class="collapsible-body">
-        <ul>
-          <li class = "waves-effect waves-red hoverable">
-            <%= link_to "View All Stores", stores_path %></li><br/>
-          </li><br/>
-          
-          <li class = "waves-effect waves-red hoverable">
-            <%= link_to "Add a New Store", new_store_path %></li>
-          </li>
-        </ul></div>
-    </li>
     
-    <li>
-      <div class="collapsible-header hoverable heading"><i class="material-icons">dashboard</i>Manage Employees</div>
-      <div class="collapsible-body">
-        <ul>
-          <li class = "waves-effect waves-red hoverable ">
-            <%= link_to "View All Employees", employees_path %></li><br/>
-          </li><br/>
-          
-          <li class = "waves-effect waves-red hoverable">
-            <%= link_to "Add a New Employee", new_employee_path %></li>
-          </li>
-        </ul></div>
-    </li>
+      <!-- Dropdown Structure -->
+      
+    </nav>
     
-    <li>
-      <div class="collapsible-header hoverable heading"><i class="material-icons">dashboard</i>Manage Assignments</div>
-      <div class="collapsible-body">
-        <ul>
-          <li class = "waves-effect waves-red hoverable">
-            <%= link_to "View All Assignments", assignments_path %></li><br/>
-          </li>
-          
-          <li class = "waves-effect waves-red hoverable">
-            <%= link_to "Add a New Assignment", new_assignment_path %></li>
-          </li>
-        </ul></div>
-    </li>

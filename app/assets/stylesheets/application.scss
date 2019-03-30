@@ -6,6 +6,7 @@ left:1%;
 right: auto !important;
 }
 
+
 body::after {
   background: url(/assets/A&M.png);
   content: "";
@@ -24,11 +25,13 @@ body::after {
  }
  
 .card-action{
+        font-family:"Trebuchet MS";
     text-align:center;
     color:#A53820;
 }
 
 .card-title{
+        font-family:"Trebuchet MS";
     text-align:center;
 }
 
@@ -45,7 +48,7 @@ body::after {
 .heading{
     font-family:"Trebuchet MS";
     text-align:center;
-    color:#A53820;
+    font-color:#A53820;
 }
 
 .link{

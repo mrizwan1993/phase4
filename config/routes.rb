@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # need routes for authors and categories ...
   resources :stores
   resources :assignments
+  resources :homepages
   
 #   # Additional routes we've created for this project
 #   get 'proposed' => 'books#proposed', as: :proposed_books

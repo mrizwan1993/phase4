@@ -1,46 +1,45 @@
-  <ul id="slide-out" class="sidenav">
+  <ul id="slide-out" class="sidenav sidenav-fixed">
     <li><div class="user-view">
-      <a href="#user"><img class="circle" src="/assets/Logo.png"></a>
     </div></li>
     
-    <ul class="collapsible">
+    <ul class="collapsible popout">
     <li>
-      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Stores</div>
+      <div class="collapsible-header hoverable heading"><i class="material-icons" >dashboard</i>Manage Stores</div>
       <div class="collapsible-body">
         <ul>
-          <li class>
+          <li class = "waves-effect waves-red hoverable">
             <%= link_to "View All Stores", stores_path %></li><br/>
-          </li>
+          </li><br/>
           
-          <li>
+          <li class = "waves-effect waves-red hoverable">
             <%= link_to "Add a New Store", new_store_path %></li>
           </li>
         </ul></div>
     </li>
     
     <li>
-      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Employees</div>
+      <div class="collapsible-header hoverable heading"><i class="material-icons">dashboard</i>Manage Employees</div>
       <div class="collapsible-body">
         <ul>
-          <li>
+          <li class = "waves-effect waves-red hoverable ">
             <%= link_to "View All Employees", employees_path %></li><br/>
-          </li>
+          </li><br/>
           
-          <li>
+          <li class = "waves-effect waves-red hoverable">
             <%= link_to "Add a New Employee", new_employee_path %></li>
           </li>
         </ul></div>
     </li>
     
     <li>
-      <div class="collapsible-header"><i class="material-icons">dashboard</i>Manage Assignments</div>
+      <div class="collapsible-header hoverable heading"><i class="material-icons">dashboard</i>Manage Assignments</div>
       <div class="collapsible-body">
         <ul>
-          <li>
+          <li class = "waves-effect waves-red hoverable">
             <%= link_to "View All Assignments", assignments_path %></li><br/>
           </li>
           
-          <li>
+          <li class = "waves-effect waves-red hoverable">
             <%= link_to "Add a New Assignment", new_assignment_path %></li>
           </li>
         </ul></div>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+  <div class = "row">
+
+ 
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo center heading">A&M Creamery</a>
+        <!--<ul class="right">-->
+        <!-- Dropdown Trigger -->
+        <!--  <li><a class="dropdown-button" href="/stores" data-activates="dropdown1">Stores<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--  <li><a class="dropdown-button" href="/employees" data-activates="dropdown2">Employees<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--  <li><a class="dropdown-button" href="/assignments" data-activates="dropdown3">Assignments<i class="material-icons right">arrow_drop_down</i></a></li>-->
+        <!--</ul>-->
+      </div>
+    
+    
+      <!-- Dropdown Structure -->
+    </nav>
+    <!--<div class="col s3 left">-->
+    <!--  <%= render partial: 'partials/quick_links' %>-->
+    <!--</div>-->
+  </div>
+  <div class="divider"></div>
+    <div class="section">
+      <h2 class="heading">Admin Controls</h2>
+    </div>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col s4 left">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+
+    
+
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/store.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title heading">Manage Stores</span>
+              </div>
+              <div class="card-action">
+                <%= link_to "Add a New Store", new_store_path %><br/><br/>
+                <%= link_to "View All Stores", stores_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+
+
+    
+    <div class="col s4 center">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+            <!--<%= yield %>-->
+    
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/employee.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title heading">Manage Employees</span>
+              </div>
+              <div class="card-action">
+                <a href="employees/new" class="heading">Add a New Employee</a><br/><br/>
+                <a href="employees" class="heading">View All Employees</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    <div class="col s4 right">
+
+
+    <!-- MAIN CONTENT GOES HERE -->
+    
+        <div class="col s8">
+          <div class="col s12 m12">
+            <div class="card small">
+              <div class="card-image">
+                <img class="card-image" src="/assets/assignment.png">
+
+              </div>
+              <div class="card-content">
+                  <span class="card-title heading">Manage Assignments</span>
+              </div>
+              <div class="card-action">
+                <a href="assignments/new" class="heading">Add a New Assignment</a><br/><br/>
+                <a href="assignments" class="heading">View All Assignments</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    
+    <footer>
+      <div class="row">
+        <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+        </div>
+      </div>
+    </footer>
+</body>
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
+<% end %>
+</html>

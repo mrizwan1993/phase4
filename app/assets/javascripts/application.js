@@ -38,5 +38,6 @@ $('.datepicker1').pickadate({
 $(".dropdown-button").dropdown({ hover: true });
 $('.collapsible').collapsible();
 $('.fixed-action-btn').floatingActionButton();
+
 })
 

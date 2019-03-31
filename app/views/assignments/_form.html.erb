@@ -33,12 +33,12 @@
         
           <div class="input-field">
           <%= form.label :store_id, :class=> "active heading" %>
-          <%= form.text_field :store_id %>
+          <%= form.collection_select :store_id, Store.active.alphabetical, :id, :name, :prompt => "Select Store" %>
           </div>
         
           <div class="input-field">
           <%= form.label :employee_id, :class=> "active heading" %>
-          <%= form.text_field :employee_id %>
+          <%= form.collection_select :employee_id, Employee.active.alphabetical, :id, :name, :prompt => "Select Employee" %>
           </div>
         
         

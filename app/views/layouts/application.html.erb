@@ -2,11 +2,13 @@
 <html>
 <head>
 <style type="text/css">
+  /*Makes the links black in color*/
   a:link {color: black;}      /* unvisited link */
   a:visited {color: black;}   /* visited link */
   a:hover {color: black;}     /* mouse over link */
   a:active {color: black;}    /* selected link */
-  
+
+  /*Makes the links white in color*/
   nav ul li a{
   color: white;
 } 
@@ -18,26 +20,17 @@
 
 <body>
   
-
-    <!-- Dropdown Structure -->
-
-
-      <%= render partial: 'partials/quick_links' %>
-
-
-    <!-- MAIN CONTENT GOES HERE -->
-
-  <%= yield %>
-
-
+    <!-- Gets the data from the file quick links -->
+    <%= render partial: 'partials/quick_links' %>
     
-
-
+    <!-- Gets data from any page that has the yield -->
+    <%= yield %>
 
 </body>
 
+<!--sources the javascript file and the stylesheet, also formats the toasts-->
 <%= javascript_include_tag "application" %>
 <% flash.each do |message_type, message| %>
-<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded center-align', 4000)" %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
 <% end %>
 </html>

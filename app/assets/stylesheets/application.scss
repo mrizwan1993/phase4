@@ -1,10 +1,14 @@
 $primary-color: #A53820;
 $button-height: 26px;
 $table-striped-color: #cfd8dc;
+
+//Taken from the lab code
 #toast-container {
-left:1%;
+left:5%;
 right: auto !important;
 }
+
+//Body styling
 html, body {
     padding:0; 
     margin:0; 
@@ -12,7 +16,7 @@ html, body {
     !important;
 }
 
-
+//Styles the footer on the form pages
 .form{
     width: 100%;
     bottom: 0; 
@@ -22,6 +26,7 @@ html, body {
     !important;
 }
 
+//Styles the footer on the other pages
 #normal{
     position: absolute;
     bottom: 0; 
@@ -31,6 +36,8 @@ html, body {
     !important;
 }
 
+
+//sets the background image's attributes
 body::after {
   background: url(/assets/A&M.png);
   content: "";
@@ -43,22 +50,21 @@ body::after {
   z-index: -1;   
 }
 
+//Styles some text
 .black-text li a{
     font-family:"Trebuchet MS";
     color:#A53820;
  }
  
+//Styles the links on the cards of the homepage
 .card-action{
         font-family:"Trebuchet MS";
     text-align:center;
     color:#A53820;
 }
 
-.card-title{
-        font-family:"Trebuchet MS";
-    text-align:center;
-}
 
+//Styles the images on the cards
 .card-image{
     width:70%;
     height:70%;
@@ -69,11 +75,13 @@ body::after {
 
 }
 
+//Styles everything with the heading class tag
 .heading{
     font-family:"Trebuchet MS";
     text-align:center;
     color: #A53820;
 }
+
 
 .link{
     font-family:"Trebuchet MS";
@@ -81,6 +89,7 @@ body::after {
     color:#A53820;
 }
 
+//Logo on the top left
 .logo{
     height: auto;
     width: auto;

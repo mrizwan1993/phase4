@@ -14,8 +14,15 @@
 //= require jquery
 //= require materialize-sprockets
 //= require_tree .
+
+
+// Our main JQuery function
 $( document ).ready(function () {
+  
+//the Jquery for the Select boxes in the forms
 $('select').material_select();
+
+//Taken from Lab 6 - Gives a nice Date interface
 $('.datepicker').pickadate({
     format: 'mmmm dd, yyyy',
     formatSubmit: 'mmmm dd, yyyy',
@@ -26,6 +33,8 @@ $('.datepicker').pickadate({
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
 });
+
+//The second Date picker for Date of Birth - Has a different range of SelectYears
 $('.datepicker1').pickadate({
     format: 'mmmm dd, yyyy',
     formatSubmit: 'mmmm dd, yyyy',
@@ -35,17 +44,17 @@ $('.datepicker1').pickadate({
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
 });
+
+//HElps the dropdown menus in the top nav work on hover and open below origin
 $(".dropdown-button").dropdown({ 
     hover: true,
     belowOrigin: true
 });
-$('.dropdown-trigger').dropdown({
-        belowOrigin: true
-});
-$('.collapsible').collapsible();
-$('.fixed-action-btn').floatingActionButton();
-$('.tooltipped').tooltip();
 
+//Works the tiny buttons to the right when I list any of the entities
+$('.fixed-action-btn').floatingActionButton();
+
+//Code to create "Scroll to top" button - taken from a website
 var btn = $('#button');
 
   $(window).scroll(function() {

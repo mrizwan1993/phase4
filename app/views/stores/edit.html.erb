@@ -1,8 +1,10 @@
 <h2 class="heading">Edit Store</h2>
+<!--Create a div containing buttons to View one store or to list all stores-->
 <div class="center-align">
-<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= @store %>>View Store</a></li>
-<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= stores_path%>>List Stores</a></li>
+    <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= @store %>>View Store</a></li>
+    <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= stores_path%>>List Stores</a></li>
 </div>
+<!--Render a form and set the value of the variable store to the @store instance variable object created via the form-->
 <%= render 'form', store: @store %>
 
 

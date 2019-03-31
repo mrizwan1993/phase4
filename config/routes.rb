@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   # Generated model routes
   resources :employees
-  # need routes for authors and categories ...
   resources :stores
   resources :assignments
   resources :homepages

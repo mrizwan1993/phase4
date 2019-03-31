@@ -2,6 +2,7 @@
 
 <h2 class="heading">All Assignments</h2>
 
+<!--Create table headings with details of stores-->
 <table class="bordered highlight centered responsive-table">
   <thead>
     <tr>
@@ -10,22 +11,23 @@
       <th class="heading">Pay Level</th>
       <th class="heading">Store Name</th>
       <th class="heading">Employee Last Name</th>
-
       <div class="center-align">
+      <!--Link to add a new assignment with a button-->
       <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href="stores/new"><i class="material-icons left">note_add</i>Add Assgmt</a></li>
       </div>
       <th colspan="3"></th>
     </tr>
   </thead>
 
+  <!--Create the body of the table with links to the fields of the schema -->
   <tbody>
     <% @assignments.each do |assignment| %>
       <tr>
         <td class="heading"><%= assignment.start_date %></td>
         <td class="heading"><%= assignment.end_date %></td>
         <td class="heading"><%= assignment.pay_level %></td>
-
         <td class="heading"><%= assignment.employee.last_name %></td>
+        <!--3 buttons with each assignment record to view info, edit and delete it respectively-->
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= assignment_path(assignment) %>><i class="material-icons left">info</i></a></td>
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= edit_assignment_path(assignment) %>><i class="material-icons left">edit</i></a></td></td>
         <td class="heading"><%= button_to "Del", assignment, data: {confirm: "Are you sure?" }, method: :delete, :class=>"waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" %></td>
@@ -33,17 +35,19 @@
     <% end %>
   </tbody>
 </table>
+
+<!--Paginate the assignments-->
 <span class="paginate">
 <%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 </span>
 
-    <footer class="page-footer" id="normal">
-      <div class="container">
-      <div class="row">
-        <div class="col s12 center">
+<!--Add a footer to this page with an ID for styling purposes-->
+<footer class="page-footer" id="normal">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
         <%= render partial: 'partials/footer' %>
-        </div>
       </div>
-      </div>
-    </footer>
-<br>
+    </div>
+  </div>
+</footer>

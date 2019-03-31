@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-  <h2 class="heading">Assignment Details:</h2><br/>
+<h2 class="heading">Assignment Details:</h2><br/>
+<!--create a row of table headings for viewing an assignment's profile-->
 <table class="bordered highlight centered responsive-table">
   <thead>
     <tr>
@@ -9,12 +9,11 @@
       <th class="heading">Pay Level</th>
       <th class="heading">Store Name</th>
       <th class="heading">Employee Lastname</th>
-
-    
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
+<!--create the body of the table with links to fields of the assignment-->
   <tbody>
       <tr>
         <td class="heading"><%= @assignment.start_date %></td>
@@ -22,9 +21,10 @@
         <td class="heading"><%= @assignment.pay_level %></td>
         <td class="heading"><%= @assignment.store.name %></td>
         <td class="heading"><%= @assignment.employee.last_name %></td>
- 
+
+<!--create buttons with links in a row-->
 <div class="row center-align">
   <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_assignment_path%>><i class="material-icons left">note_add</i>Add Assgmt</a></li>
-<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_assignment_path(@assignment) %>><i class="material-icons left">edit</i>Edit</a></li>
-<a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= assignments_path %>><i class="material-icons left">arrow_back</i> Assgmts List </a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_assignment_path(@assignment) %>><i class="material-icons left">edit</i>Edit</a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= assignments_path %>><i class="material-icons left">arrow_back</i> Assgmts List </a></li>
 </div>

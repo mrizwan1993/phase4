@@ -20,10 +20,10 @@
 $( document ).ready(function () {
   
 //the Jquery for the Select boxes in the forms
+$('select').formSelect();
 $('select').material_select();
-
 //Taken from Lab 6 - Gives a nice Date interface
-$('.datepicker').pickadate({
+$('.datepicker').datepicker({
     format: 'mmmm dd, yyyy',
     formatSubmit: 'mmmm dd, yyyy',
     selectMonths: true, // Creates a dropdown to control month
@@ -35,7 +35,7 @@ $('.datepicker').pickadate({
 });
 
 //The second Date picker for Date of Birth - Has a different range of SelectYears
-$('.datepicker1').pickadate({
+$('.datepicker1').datepicker({
     format: 'mmmm dd, yyyy',
     formatSubmit: 'mmmm dd, yyyy',
     selectMonths: true, // Creates a dropdown to control month

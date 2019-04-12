@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   resources :employees
   resources :stores
   resources :assignments
-  resources :homepages
+  resources :demos, only: [:new, :create, :destroy]
   
 #   # Additional routes we've created for this project
 #   get 'proposed' => 'books#proposed', as: :proposed_books
 #   get 'contracted' => 'books#contracted', as: :contracted_books
-  
+  get 'demos/destroy', to: 'demos#destroy', as: :logout
   # Set the root url
-  root to: 'homepages#index', as: :home
+  root 'demos#new'
   
 
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 #   get 'contracted' => 'books#contracted', as: :contracted_books
   get 'demos/destroy', to: 'demos#destroy', as: :logout
   # Set the root url
-  root 'demos#new'
+  root 'employees#new'
   
 
 end

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  /*Makes the links black in color*/
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  
+  <!-- Full definition of the top nav bar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+  <!--Code for the actual nav bar-->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href=<%= landing_index_path %> class="brand-logo heading">The A&M Creamery</a>
+        <ul class="right">
+            <li><a class="dropdown-button white-text" href=<%= landing_index_path %>>Home<i class="material-icons left">home</i></a></li>
+            <li><a class="dropdown-button white-text" href=<%= new_demo_path %>>Login<i class="material-icons left">exit_to_app</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="heading">Privacy Policy</h2>
+        <br/>
+        <h5 class="heading">
+        The A&M Creamery takes your privacy seriously. The following principles guide our treatment of your personal information:
+        <br/><br/>
+        </h5>
+        <ul class="collection">
+        <h6 class="heading">
+          <li class="collection-item">We value the trust you place in The A&M Creamery when sharing your personal
+          information with us.</li>
+          <li class="collection-item">We strive to be transparent with you about what information we collect, what we do with it
+          and with whom we share it.</li>
+          <li class="collection-item">We will work with you to promptly address your concerns about how we use your personal
+          information.</li>
+          <li class="collection-item">We will take steps to keep your personal information secure and to protect it 
+          from misuse.</li>
+        </h6> 
+        </ul>
+        <br/><br/>
+        <h6 class="heading">
+        Check out our <a href= <%= contact_index_path %>>Contact Us</a> page or follow the other links in the footer below!
+        </h6>
+    </div>
+</body>
+
+
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+      <%= render partial: 'partials/footer' %>
+    </div>
+  </div>
+</footer>
+
+<!--sources the javascript file and the stylesheet, also formats the toasts-->
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
+<% end %>
+</html>
+
+
+
+

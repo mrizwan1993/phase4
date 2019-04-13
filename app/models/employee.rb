@@ -6,7 +6,7 @@ class Employee < ApplicationRecord
   # Relationships
   has_many :assignments
   has_many :stores, through: :assignments
-  has_one :user
+  has_one :user, dependent: :destroy
   accepts_nested_attributes_for :user
   
   # Validations

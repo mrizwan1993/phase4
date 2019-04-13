@@ -6,10 +6,15 @@ module DemosHelper
     
     def current_user
         if @current_user.nil?
-            if session[:role] == 'professor'
-                @current_user = Professor.find_by(id: session[:user_id])
+            if session[:role] == 'admin'
+                @current_user = Employee.find_by(id: session[:user_id])
             else
-                @current_user = Student.find_by(id: session[:user_id])
+                @current_user = Employee.find_by(id: session[:user_id])
+            end
+            if session[:role] == 'manager'
+                @current_user = Employee.find_by(id: session[:user_id])
+            else 
+                @current_user = Employee.find_by(id: session[:user_id])
             end
         else
             @current_user

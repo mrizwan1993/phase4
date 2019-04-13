@@ -1,6 +1,9 @@
 class Store < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
+  before_destroy :stop_destroy
+
+
   
   # Relationships
   has_many :assignments
@@ -37,6 +40,10 @@ class Store < ApplicationRecord
     phone.gsub!(/[^0-9]/,"") # strip all non-digits
     self.phone = phone       # reset self.phone to new string
   end
-
+  
+  def stop_destroy
+    self.errors[:base] << "Countries cannot be deleted"
+    return false
+  end
 end
 

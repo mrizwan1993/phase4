@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  /*Makes the links black in color*/
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  
+  <!-- Full definition of the top nav bar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+  <!--Code for the actual nav bar-->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href=<%= landing_index_path %> class="brand-logo heading">CMUQ Academic HUB</a>
+        <ul class="right">
+            <li><a class="dropdown-button white-text" href=<%= landing_index_path %>>Home<i class="material-icons left">home</i></a></li>
+            <li><a class="dropdown-button white-text" href=<%= new_demo_path %>>Login<i class="material-icons left">exit_to_app</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</head>
+
+<body>
+    <div class="container">
+        <br/><br/>
+        <h2 class="heading">Contact Us</h2>
+        <br/><br/>
+        <div class="center-align">
+            <div class="card white">
+                <div class="card-content white-text">
+                      <span class="card-title heading">Contact Details</span>
+                      <h5 class="heading">
+                        Webmaster: Muhammad Taimur Rizwan<br/>
+                        <%= mail_to "mrizwan@qatar.cmu.edu", "mrizwan@qatar.cmu.edu", :encode => "javascript" %><br/>
+                        Phone: +92-300-4113245
+                        </h5>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <h5 class="heading">For more details, follow the other links in the footer below!</h5>
+    </div>
+</body>
+
+
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+      <%= render partial: 'partials/footer' %>
+    </div>
+  </div>
+</footer>
+
+<!--sources the javascript file and the stylesheet, also formats the toasts-->
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
+<% end %>
+</html>
+
+
+
+

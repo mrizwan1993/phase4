@@ -1,0 +1,10 @@
+admin_hub.html.erb, line 42
+          <!--<li><a class="dropdown-button white-text"  href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>-->
+          
+admin_hub.html.erb, line 117-122
+                      <!--<% employee = Employee.find(session[:user_id])  %>-->
+            <!--<div class="card-action center-align">-->
+            <!--  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= employee_path(employee)  %>>View Profile</a></li>-->
+            <!--  <br/><br/>-->
+            <!--  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_professor_path(professor)  %>>Edit Profile</a></li>-->
+            <!--</div>-->

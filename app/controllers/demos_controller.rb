@@ -5,19 +5,17 @@ class DemosController < ApplicationController
     end 
     
     def create 
-        if params[:demo][:role] == 'student'
-            user = Student.find_by(andrew_id: params[:demo][:andrew_id])
-        end
-        if params[:demo][:role] == 'professor'
-            user = Professor.find_by(andrew_id: params[:demo][:andrew_id])
-        end
+        user = Employee.find_by(email: params[:demo][:email])
         if user && user.authenticate(params[:demo][:password])
            login(user)
-            if params[:demo][:role] == 'student'
-                redirect_to student_hub_index_path
+            if params[:demo][:role] == 'employee'
+                redirect_to employee_hub_index_path
             end
-            if params[:demo][:role] == 'professor'
-                redirect_to professor_hub_index_path
+            if params[:demo][:role] == 'manager'
+                redirect_to manager_hub_index_path
+            end
+            if params[:demo][:role] == 'admin'
+                redirect_to admin_hub_index_path
             end
             #redirect_to user
         else

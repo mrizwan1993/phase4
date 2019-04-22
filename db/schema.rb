@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_214948) do
+ActiveRecord::Schema.define(version: 2019_04_22_210332) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "store_id"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_214948) do
     t.time "start_time"
     t.time "end_time"
     t.text "notes"
+    t.integer "assignment_id"
+    t.index ["assignment_id"], name: "index_shifts_on_assignment_id"
   end
 
   create_table "store_flavors", force: :cascade do |t|

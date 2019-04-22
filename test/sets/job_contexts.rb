@@ -6,9 +6,6 @@ module Contexts
       @cleanmachines = FactoryBot.create(:job, name: "Clean the Machines", description: "Clean all the machines in the store", active: false)
       @eatgarbage = FactoryBot.create(:job, name: "Eat Garbage", description: "Become the waste disposal", active: false)
       @changetissues = FactoryBot.create(:job, name: "Change Tissues", description: "Change the tissues in the boxes", active: true)
-      @ordersupplies = FactoryBot.create(:job)
-      @stocksupplies = FactoryBot.create(:job)
-
     end
     
     def remove_jobs
@@ -16,8 +13,6 @@ module Contexts
       @cleanmachines.destroy
       @eatgarbage.destroy
       @changetissues.destroy
-      @ordersupplies.destroy
-      @stocksupplies.destroy
     end
 
     def create_additional_jobs

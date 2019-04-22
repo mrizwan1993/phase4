@@ -9,7 +9,7 @@ class Job < ApplicationRecord
     scope :inactive,     -> { where(active: false) }
     
     
-    before_destroy: destroy_or_not
+    before_destroy :destroy_or_not
     after_rollback :make_inactive
     
     def destroy_or_not

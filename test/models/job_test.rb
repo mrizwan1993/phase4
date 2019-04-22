@@ -25,13 +25,13 @@ class JobTest < ActiveSupport::TestCase
     # test one of each factory (not really required, but not a bad idea)
     should "show that all factories are properly created" do
       assert_equal "Mop Floors", @mopfloors.name
-      assert @cleanmachines.active
+      assert_equal false, @cleanmachines.active
       assert_equal false, @eatgarbage.active
     end
 
     # test the scope 'alphabetical'
-    should "shows that there are three flavors in alphabetical order" do
-      assert_equal ["Caramel", "Chocolate", "Chocolate Chip", "Coffee", "Garlic", "Ginger", "Mint Chocolate", "Phenyle", "Strawberry", "Vanilla"], Flavor.alphabetical.map{|s| s.name}
+    should "shows that there are three jobs in alphabetical order" do
+      assert_equal ["Change Tissues", "Clean the Machines", "Eat Garbage", "Mop Floors"], Job.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'active'
@@ -48,7 +48,8 @@ class JobTest < ActiveSupport::TestCase
   
     #test the make_inactive method
     should "shows that Change Tissues is no longer active" do
-      assert_equal false, (@changetissues.make_inactive).active?
+      @changetissues.make_inactive
+      assert_equal false, (@changetissues.active)
     end
     
     #test the rollback callback

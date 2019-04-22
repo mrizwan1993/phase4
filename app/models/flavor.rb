@@ -8,7 +8,7 @@ class Flavor < ApplicationRecord
     scope :active,       -> { where(active: true) }
     scope :inactive,     -> { where(active: false) }
     
-    before_destroy: dont_destroy
+    before_destroy :dont_destroy
     after_rollback :make_inactive
     
     def dont_destroy

@@ -4,6 +4,7 @@ class EmployeeTest < ActiveSupport::TestCase
   # Test relationships
   should have_many(:assignments)
   should have_many(:stores).through(:assignments)
+  should have_one(:user)
   
   # Test basic validations
    should validate_presence_of(:first_name)

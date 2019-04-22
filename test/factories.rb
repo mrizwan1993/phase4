@@ -47,7 +47,7 @@ FactoryBot.define do
     description { "Throughout the store" }
     active { true }
   end
-  
+
   factory :user do
     association :employee
     email { "testemail@test.com" }

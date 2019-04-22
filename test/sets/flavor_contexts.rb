@@ -7,8 +7,9 @@ module Contexts
       @chocolatechip = FactoryBot.create(:flavor, name: "Chocolate Chip", active: true)
       @garlic = FactoryBot.create(:flavor, name: "Garlic", active: false)
       @ginger = FactoryBot.create(:flavor, name: "Ginger", active: false)
-      @vanilla = FactoryBot.create(:flavor)
-      @caramel = FactoryBot.create(:flavor)
+      @mintchocolate = FactoryBot.create(:flavor, name: "Mint Chocolate", active: true)
+      @phenyle = FactoryBot.create(:flavor, name: "Phenyle", active: false)
+      @coffee = FactoryBot.create(:flavor, name: "Coffee", active: true)    
     end
     
     def remove_flavors
@@ -16,21 +17,18 @@ module Contexts
       @chocolate.destroy
       @chocolatechip.destroy
       @garlic.destroy
-      @ginger.destroy
-      @vanilla.destroy
-      @caramel.destroy
-    end
-
-    def create_additional_flavors
-      @mintchocolate = FactoryBot.create(:flavor, name: "Mint Chocolate", active: true)
-      @phenyle = FactoryBot.create(:flavor, name: "Phenyle", active: false)
-      @coffee = FactoryBot.create(:flavor, name: "Coffee", active: true)     
-    end
-
-    def remove_additional_flavors
       @mintchocolate.destroy
       @phenyle.destroy
       @coffee.destroy
+      @ginger.destroy
+    end
+
+    def create_additional_flavors
+ 
+    end
+
+    def remove_additional_flavors
+
     end
   end
 end

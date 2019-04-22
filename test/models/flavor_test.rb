@@ -30,30 +30,32 @@ class FlavorTest < ActiveSupport::TestCase
     end
 
     # test the scope 'alphabetical'
-    should "shows that there are three flavors in alphabetical order" do
-      assert_equal ["Caramel", "Chocolate", "Chocolate Chip", "Coffee", "Garlic", "Ginger", "Mint Chocolate", "Phenyle", "Strawberry", "Vanilla"], Flavor.alphabetical.map{|s| s.name}
+    should "shows that there are five flavors in alphabetical order" do
+      assert_equal ["Chocolate", "Chocolate Chip", "Garlic", "Ginger", "Strawberry"], Flavor.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'active'
-    should "shows that there are five active flavors" do
-      assert_equal 5, Flavor.active.size
-      assert_equal ["Chocolate", "Chocolate Chip", "Coffee", "Mint Chocolate", "Strawberry"], Flavor.active.alphabetical.map{|s| s.name}
+    should "shows that there are three active flavors" do
+      assert_equal 3, Flavor.active.size
+      assert_equal ["Chocolate", "Chocolate Chip", "Strawberry"], Flavor.active.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'inactive'
-    should "shows that there are three inactive flavors" do
-      assert_equal 3, Flavor.inactive.size
-      assert_equal ["Garlic", "Ginger", "Phenyle"], Flavor.inactive.alphabetical.map{|s| s.name}
+    should "shows that there are two inactive flavors" do
+      assert_equal 2, Flavor.inactive.size
+      assert_equal ["Garlic", "Ginger"], Flavor.inactive.alphabetical.map{|s| s.name}
     end
   
     #test the make_inactive method
-    should "shows that Mint Chocolate is no longer active" do
-      assert_equal false, (@mintchocolate.make_inactive).active?
+    should "shows that Chocolate is no longer active" do
+      @chocolate.make_inactive
+      assert_equal false, (@chocolate.active)
     end
     
     #test the rollback callback
     should "make the flavor inactive if tried to delete" do
-      assert_equal false, (@vanilla.destroy).active?
+      @strawberry.destroy
+      assert_equal false, (@strawberry.active)
     end
   end
 end

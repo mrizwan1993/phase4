@@ -68,6 +68,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #   # bundle exec rake doc:rails generates the API under doc/api.
 #   gem 'sdoc', require: false
 # end
+
+group :production do
+  gem 'pg'  
+end
+
 gem 'jquery-rails'
 gem 'validates_timeliness'
 gem 'will_paginate'

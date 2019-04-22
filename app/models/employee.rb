@@ -7,6 +7,7 @@ class Employee < ApplicationRecord
   has_many :assignments
   has_many :stores, through: :assignments
   has_one :user, dependent: :destroy
+  has_many :shifts, through: :assignments
   accepts_nested_attributes_for :user
   
   # Validations
@@ -59,6 +60,59 @@ class Employee < ApplicationRecord
   # Callback code  (NOT DRY!!!)
   # -----------------------------
    #private
+    def worked_shift?
+        self.shifts.size > 0
+    end
+
+   def delete_assignment
+    assignment = self.assignments.current.first
+    if !assignment.nil?
+      self.assignment.current.first.delete
+    end
+   end
+   
+   def make_inactive 
+    self.update_attribute(:active, false)
+   end
+   
+   def terminate_assignment
+    assignment = self.assignments.current.first
+    if !assignment.nil?
+      assignment.update_attribute(:end_date, Date.today)
+    end
+   end
+   
+   def delete_future_shifts
+    future_shifts = Shift.for_employee(self.id).upcoming
+   end
+   
+   def emp_delete
+     shifts = Shift.for_employee(self.id)
+     if shifts.nil?
+       delete_assignment
+       return true
+     else
+      make_inactive 
+      terminate_assignment
+      return false
+     end
+   end
+
+
+    before_destroy do
+      if !worked_shift?
+        self.delete_assignment
+      else
+        self.make_inactive
+        self.terminate_assignment
+        self.delete_future_shifts
+        self.save
+        self.errors.add(:base, 'cannot delete this employee')
+        throw(:abort)
+      end
+    end
+  
+   
    def reformat_phone
      phone = self.phone.to_s  # change to string in case input as all numbers 
      phone.gsub!(/[^0-9]/,"") # strip all non-digits
@@ -69,5 +123,7 @@ class Employee < ApplicationRecord
      ssn.gsub!(/[^0-9]/,"")   # strip all non-digits
      self.ssn = ssn           # reset self.ssn to new string
    end
+   
+
 end
 

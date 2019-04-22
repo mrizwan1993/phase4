@@ -1,13 +1,14 @@
 class Store < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
-  before_destroy :stop_destroy
 
 
   
   # Relationships
   has_many :assignments
-  has_many :employees, through: :assignments  
+  has_many :employees, through: :assignments
+  has_many :store_flavors
+  has_many :flavors, through: :store_flavors
   
   # Validations
   # make sure required fields are present
@@ -33,6 +34,16 @@ class Store < ApplicationRecord
   
   # Callback code
   # -----------------------------
+  def make_inactive 
+    self.update_attribute(:active, false)
+  end
+  
+  before_destroy do
+    self.make_inactive
+    self.errors.add([:base], "cannot delete a store")
+    throw(:abort)
+  end
+  
   private
   # We need to strip non-digits before saving to db
   def reformat_phone
@@ -41,9 +52,6 @@ class Store < ApplicationRecord
     self.phone = phone       # reset self.phone to new string
   end
   
-  def stop_destroy
-    self.errors[:base] << "Countries cannot be deleted"
-    return false
-  end
+
 end
 

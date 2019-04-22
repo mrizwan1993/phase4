@@ -1,6 +1,6 @@
 class DemosController < ApplicationController
     
-        layout 'login.html.erb'
+    layout 'login.html.erb'
     def new 
     end 
     

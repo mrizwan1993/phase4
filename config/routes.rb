@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :employees
   resources :stores
   resources :assignments
+  resources :users
   resources :demos, only: [:new, :create, :destroy]
   
 #   # Additional routes we've created for this project

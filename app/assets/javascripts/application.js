@@ -18,12 +18,7 @@
 
 // Our main JQuery function
 $( document ).ready(function () {
-  
-//the Jquery for the Select boxes in the forms
-$('select').formSelect();
-$('select').material_select();
-//Taken from Lab 6 - Gives a nice Date interface
-$('.datepicker').datepicker({
+  $('.datepicker').datepicker({
     format: 'mmmm dd, yyyy',
     formatSubmit: 'mmmm dd, yyyy',
     selectMonths: true, // Creates a dropdown to control month
@@ -33,6 +28,11 @@ $('.datepicker').datepicker({
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
 });
+
+//the Jquery for the Select boxes in the forms
+$('select').formSelect();
+$('select').material_select();
+//Taken from Lab 6 - Gives a nice Date interface
 
 //The second Date picker for Date of Birth - Has a different range of SelectYears
 $('.datepicker1').datepicker({
@@ -73,3 +73,25 @@ var btn = $('#button');
 
 })
 
+//Taken from Lab 6 - Gives a nice Date interface
+$('.datepicker').datepicker({
+    format: 'mmmm dd, yyyy',
+    formatSubmit: 'mmmm dd, yyyy',
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+});
+
+//The second Date picker for Date of Birth - Has a different range of SelectYears
+$('.datepicker1').datepicker({
+    format: 'mmmm dd, yyyy',
+    formatSubmit: 'mmmm dd, yyyy',
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 80, // Creates a dropdown of 80 years to control year,
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+});

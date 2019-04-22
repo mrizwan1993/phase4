@@ -9,19 +9,29 @@ module Contexts
   include Contexts::StoreContexts
   include Contexts::EmployeeContexts
   include Contexts::AssignmentContexts
+  include Contexts::FlavorContexts
+  include Contexts::ShiftContexts
+  include Contexts::JobContexts
+  include Contexts::UserContexts
   
- def create_contexts
+  def create_contexts
     create_employees
     create_stores
     create_assignments
-    
+    create_flavors
+    create_shifts
+    create_jobs
+    create_users
   end
   
   def destroy_contexts
     destroy_employees
     destroy_stores
     destroy_assignments
-    
+    destroy_flavors
+    destroy_shifts
+    destroy_jobs
+    destroy_users
   end
   
 

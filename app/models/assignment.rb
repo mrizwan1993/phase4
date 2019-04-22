@@ -1,8 +1,9 @@
 class Assignment < ApplicationRecord
 # Callbacks
   before_create :end_previous_assignment
-  after_rollback :delete_on_terminate
   before_destroy :terminate_or_destroy_assignment
+  after_rollback :terminate_assignment
+
   
   # Relationships
   belongs_to :employee
@@ -61,24 +62,18 @@ class Assignment < ApplicationRecord
       shift.delete
     end
   end
-  
-  def delete_on_terminate
-    if self.end_date <= Date.today
-      delete_shifts
-    end
-  end
+
   
   def terminate_assignment
     self.update_attribute(:end_date, Date.today)
+    delete_shifts
   end
   
   def terminate_or_destroy_assignment
     shifts = self.shifts.past
     if !shifts.nil?
-      terminate_assignment
-      return false 
-    else
-      return true
+      self.errors.add(:base, 'cannot delete this assignment becasue a shift has been worked; this assignment will be terminated instead')
+      throw(:abort)
     end
   end  
 end

@@ -4,7 +4,6 @@ class Shift < ApplicationRecord
     after_create :change_end_time
     before_destroy :can_be_deleted
 
-    
     belongs_to :assignment
     has_one :employee, through: :assignment
     has_one :store, through: :assignment

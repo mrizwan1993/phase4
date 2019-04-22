@@ -66,10 +66,10 @@ class Employee < ApplicationRecord
     end
     
     def delete_assignment
-    assignment = self.assignments.current.first
-    if !assignment.nil?
-      self.assignment.current.first.delete
-    end
+        assignment = self.assignments.current.first
+        if !assignment.nil?
+          self.assignments.current.first.delete
+        end
     end
     
     def make_inactive 

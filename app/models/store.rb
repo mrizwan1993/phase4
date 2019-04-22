@@ -6,9 +6,10 @@ class Store < ApplicationRecord
   
   # Relationships
   has_many :assignments
-  has_many :employees, through: :assignments
+  has_many :employees, through: :assignments  
   has_many :store_flavors
   has_many :flavors, through: :store_flavors
+  has_many :shifts, through: :assignments
   
   # Validations
   # make sure required fields are present
@@ -31,6 +32,8 @@ class Store < ApplicationRecord
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
+  before_destroy :dont_destroy
+  after_rollback :make_inactive
   
   # Callback code
   # -----------------------------
@@ -38,9 +41,8 @@ class Store < ApplicationRecord
     self.update_attribute(:active, false)
   end
   
-  before_destroy do
-    self.make_inactive
-    self.errors.add([:base], "cannot delete a store")
+  def dont_destroy
+    self.errors.add(:base, 'cannot delete a store')
     throw(:abort)
   end
   

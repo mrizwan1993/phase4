@@ -159,5 +159,23 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal 17, @cindy.age
       assert_equal 30, @kathryn.age
     end
+    
+    should "shows that employees with no shifts can be deleted" do
+      @cmu = FactoryBot.create(:store)
+      @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
+      @mrizwan.destroy
+      assert @mrizwan.destroyed?
+      assert @mrizwan_test.destroyed?
+      @cmu.destroy
+    end
+    
+    should "shows that employees with shifts (past) cannot  be deleted" do
+      @cmu = FactoryBot.create(:store)      
+      @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
+      @mrizwan_shift = FactoryBot.create(:shift, assignment: @mrizwan_test, date: Date.tomorrow)
+      @mrizwan.destroy
+      assert !@mrizwan.destroyed?
+      @cmu.destroy
+    end
   end
 end

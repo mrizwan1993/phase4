@@ -60,7 +60,7 @@ class Employee < ApplicationRecord
     # Callback code  (NOT DRY!!!)
     # -----------------------------
     #private
-    def worked_shift?
+    def has_worked_shift?
         shifts = Shift.for_employee(self.id)
         shifts.nil?
     end
@@ -78,41 +78,14 @@ class Employee < ApplicationRecord
     
     def terminate_assignment
     assignment = self.assignments.current.first
-    if !assignment.nil?
-      assignment.update_attribute(:end_date, Date.today)
-    end
+        if !assignment.nil?
+          assignment.update_attribute(:end_date, Date.today)
+        end
     end
     
     def delete_future_shifts
-    future_shifts = Shift.for_employee(self.id).upcoming
+        future_shifts = Shift.for_employee(self.id).upcoming
     end
-    
-    def emp_delete
-     shifts = Shift.for_employee(self.id)
-     if shifts.nil?
-       delete_assignment
-       return true
-     else
-      make_inactive 
-      terminate_assignment
-      return false
-     end
-    end
-    
-    
-    before_destroy do
-      if !worked_shift?
-        self.delete_assignment
-      else
-        self.make_inactive
-        self.terminate_assignment
-        self.delete_future_shifts
-        self.save
-        self.errors.add(:base, 'cannot delete this employee')
-        throw(:abort)
-      end
-    end
-    
     
     def reformat_phone
      phone = self.phone.to_s  # change to string in case input as all numbers 

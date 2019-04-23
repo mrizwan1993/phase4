@@ -119,5 +119,24 @@ class AssignmentTest < ActiveSupport::TestCase
       assert_equal 1.day.ago.to_date, @kathryn.assignments.first.end_date
       @promote_kathryn.destroy
     end
+    
+    should "end future shifts when assignment destroyed" do
+      @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
+      @mrizwan_shift = FactoryBot.create(:shift, assignment: @mrizwan_test, date: Date.tomorrow)
+      @mrizwan_test.destroy
+      assert_equal false, Shift.exists?(@mrizwan_shift.id)
+      @mrizwan_shift.destroy 
+    end
+
+    should "terminate an assignment instead of destroying it if shifts have been worked" do
+      @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
+      @mrizwan_shift = FactoryBot.create(:shift, assignment: @mrizwan_test, date: Date.tomorrow)
+      @mrizwan_test.destroy
+      assert !@mrizwan_test.destroyed?
+      assert_equal 1, Assignment.past.for_employee(@mrizwan.id).size
+      @mrizwan_shift.destroy
+      @mrizwan_test.destroy
+    end
+    
   end
 end

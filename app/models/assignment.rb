@@ -2,7 +2,7 @@ class Assignment < ApplicationRecord
 # Callbacks
   before_create :end_previous_assignment
   before_destroy :terminate_or_destroy_assignment
-  after_rollback :terminate_assignment
+  after_rollback :terminate_assignment, :delete_shifts
 
   
   # Relationships
@@ -35,9 +35,7 @@ class Assignment < ApplicationRecord
   
   def end_previous_assignment
     current_assignment = Employee.find(self.employee_id).current_assignment
-    if current_assignment.nil?
-      return true 
-    else
+    if !current_assignment.nil?
       current_assignment.update_attribute(:end_date, self.start_date.to_date)
     end
   end
@@ -66,7 +64,6 @@ class Assignment < ApplicationRecord
   
   def terminate_assignment
     self.update_attribute(:end_date, Date.today)
-    delete_shifts
   end
   
   def terminate_or_destroy_assignment

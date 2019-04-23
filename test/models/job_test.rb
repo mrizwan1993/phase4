@@ -53,5 +53,27 @@ class JobTest < ActiveSupport::TestCase
     end
     
     #test the rollback callback
+    should "Alphabetically List jobs" do
+      assert_equal 2, Job.alphabetical.size
+      assert_equal ["Clerk", "Janitor"], Job.alphabetical.map{|job| job.name}
+    end
+    
+    should "Show that job can only be deleted if the job has never been worked by an employee; otherwise it is made inactive" do
+      @cmu = FactoryBot.create(:store)
+      @faaiz = FactoryBot.create(:employee, first_name: "Faaiz", last_name: "Joad", role: "manager", phone: "949-786-4786")
+      @assignment_faaiz = FactoryBot.create(:assignment, employee: @faaiz, store: @cmu, start_date: 6.months.ago.to_date, end_date: nil)
+      @shift_faaiz = FactoryBot.create(:shift, assignment: @assignment_faaiz)
+      @shift_job_clerk = FactoryBot.create(:shift_job, job: @clerk, shift: @shift_faaiz)
+
+      @clerk.destroy
+      assert_equal 1, Job.inactive.size
+      assert_equal ["Clerk"], Job.inactive.map{|job| job.name}
+      
+      @shift_job_clerk.destroy
+      @shift_faaiz.destroy
+      @assignment_faaiz.destroy
+      @faaiz.destroy
+      @cmu.destroy
+    end
   end
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AssignmentTest < ActiveSupport::TestCase
+class ShiftTest < ActiveSupport::TestCase
   # Test relationships
    should belong_to(:assignment)
    should have_one(:employee), through: :assignment
@@ -26,16 +26,22 @@ class AssignmentTest < ActiveSupport::TestCase
   context "Creating a context for shifts" do
     setup do
       create_assignments
-      create_shift_jobs
+      create_shifts
       create_jobs
+      create_shiftjobs
     end
 
     teardown do
-      remove_assignments
-      remove_shift_jobs
+      remove_shiftjobs
       remove_jobs
+      remove_assignments
+      remove_shifts
     end
 
+    should "have a scope 'completed' that works" do
+      assert_equal true, @morning.completed?  
+    end
+    
     # should "have a scope 'for_store' that works" do
     #   assert_equal 4, Assignment.for_store(@cmu.id).size
     #   assert_equal 1, Assignment.for_store(@oakland.id).size

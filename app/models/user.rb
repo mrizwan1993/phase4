@@ -3,17 +3,15 @@ class User < ApplicationRecord
     has_secure_password
     validates_presence_of :password_digest, on: :create
     validates_uniqueness_of :email, :employee_id
-    validate :is_active_in_system, on: :create
-    validate :is_active_in_system, on: :update
+    validate :is_active_employee, on: :create
+    validate :is_active_employee, on: :update
     validates_format_of :email,:with => /\A[a-zA-Z0-9]+([\w\.\'\!\#\$\%\&\*\+\-\/\=\?\^\`\{\|\}\~])*([a-zA-Z0-9])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}\z/
 
     
     def is_active_employee
         all_active_employees = Employee.active.map(&:id)
         unless all_active_employees.include?(self.employee_id)
-            errors.add(:employee_id, "Users
-            can only be assigned to active
-            employees")
+      errors.add(:employee_id, "cannot be created. cannot create a user for an inactive employee. Please make this employee active")
         end
     end
     

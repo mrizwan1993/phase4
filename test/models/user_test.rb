@@ -8,11 +8,7 @@ class UserTest < ActiveSupport::TestCase
   should have_secure_password
 
   # test one of each factory (not really required, but not a bad idea)
-  should "show that all factories are properly created" do
-    assert_equal "cindy@a&m.com", @cindyUser.email
-    assert_equal "ralphpassword", @ralphUser.password_digest
-    assert_equal @ben, @benUser.employee
-  end
+
   # tests for email
  
   should allow_value("test@testemail.com").for(:email)
@@ -36,14 +32,41 @@ class UserTest < ActiveSupport::TestCase
   context "Creating a context for users" do
     # create the objects I want with factories
     setup do
-      create_employees
-      create_users
     end
     
     # and provide a teardown method as well
     teardown do
-      remove_users
-      remove_employees
     end
+    
+    
+    #test scopes and methods 
+    should "Assure that user can only be added to an active employee" do
+      @testemployee = FactoryBot.create(:employee, active: true)
+      @testemployee2=FactoryBot.create(:employee, active: false)
+      @testuser = FactoryBot.create(:user, email:"testuser@test.com", employee: @testemployee)
+      assert @testuser.valid?
+      @testuser2= FactoryBot.create(:user, email:"testuser2@test.com", employee: @testemployee2)
+      assert !@testuser2.valid?
+      @testuser.destroy
+      @testuser2.destroy
+      @testemployee.destroy
+      @testemployee2.destroy
+    end
+    
+    should "Show that user is automatically deleted when employee is deleted" do
+      @testemployee = FactoryBot.create(:employee, active: true)
+      @testuser = FactoryBot.create(:user, email:"testuser@test.com", employee: @testemployee)
+      @testemployee.destroy
+      assert @testemployee.destroyed?
+      assert @testuser.destroyed?
+    end
+    
+    should "make sure user_role function works" do
+      @testemployee = FactoryBot.create(:employee, first_name: "test", last_name: "employee", ssn: "123-67-8236", phone: "949-675-2317", role: "manager")
+      @testuser = FactoryBot.create(:user, email:"test@test.com", employee: @testemployee) 
+      assert_equal "manager", @testuser.user_role
+      @testuser.destroy
+      @testemployee.destroy
+    end    
   end
 end

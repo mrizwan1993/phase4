@@ -24,7 +24,7 @@ FactoryBot.define do
     association :store
     association :employee
     start_date {1.year.ago.to_date}
-    end_date {1.month.ago.to_date}
+    end_date { nil }
     pay_level {1}
   end
   
@@ -33,11 +33,16 @@ FactoryBot.define do
     active { true }
   end
   
+  factory :store_flavor do
+    association :flavor
+    association :store
+  end
+  
   factory :shift do
     association :assignment
     date { 10.days.from_now }
-    start_time { middle_of_day() }
-    end_time { midnight() }
+    start_time { Time.now - 2.hours }
+    end_time { Time.now + 15.hours }
     notes { "The shift went well - all the chores were 
     completed and the employee worked hard" }
   end
@@ -47,7 +52,12 @@ FactoryBot.define do
     description { "Throughout the store" }
     active { true }
   end
-
+  
+  factory :shift_job do
+    association :job
+    association :shift
+  end
+  
   factory :user do
     association :employee
     email { "testemail@test.com" }

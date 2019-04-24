@@ -14,9 +14,9 @@ class Job < ApplicationRecord
     
     def destroy_or_not
         if worked_on?
-            self.errors.add([:base], "cannot 
+            self.errors[:base] << "cannot 
             delete a job if an employee has 
-            worked on it")
+            worked on it"
             throw(:abort)
         end
     end

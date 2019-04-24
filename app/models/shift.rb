@@ -11,13 +11,13 @@ class Shift < ApplicationRecord
     has_many :jobs, through: :shift_jobs
 
     validates_presence_of :date, :start_time, :assignment_id
-    validates_datetime :end_time, :after => :start_time
+    #validates_datetime :end_time, :after => :start_time
     #validates_date :date, on_or_after: lambda { Date.current }, allow_blank: false
     
     
     #scopes
     scope :completed,     -> { joins(:shift_jobs) }
-    scope :incompleted,   -> { joins("LEFT JOIN shift_jobs ON shift_id")}
+    scope :incomplete,   -> { joins("LEFT JOIN shift_jobs ON shift_id")}
     scope :for_store,     -> (store_id) { joins(:assignment).where("store_id = ?", store_id) }
     scope :for_employee,  -> (employee_id) { joins(:assignment).where("employee_id = ?", employee_id) }
     scope :past,          -> { where("date < ?", Date.current) }
@@ -49,8 +49,7 @@ class Shift < ApplicationRecord
     
     def only_current_assignment
         currAssignments = Assignment.current.map { |assignment| assignment.id }
-        if currAssignments.include?(self.assignment_id)
-        else
+        if !currAssignments.include?(self.assignment_id)
             self.errors.add(:base, 'cannot add a shift to a past assignment')
             throw(:abort)
         end

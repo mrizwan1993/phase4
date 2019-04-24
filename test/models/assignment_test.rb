@@ -74,14 +74,14 @@ class AssignmentTest < ActiveSupport::TestCase
     end
 
     should "have a scope to find all current assignments for a store or employee" do
-      assert_equal 2, Assignment.current.for_store(@cmu.id).size
+      assert_equal 3, Assignment.current.for_store(@cmu.id).size
       assert_equal 1, Assignment.current.for_store(@oakland.id).size
       assert_equal 1, Assignment.current.for_employee(@ben.id).size
-      assert_equal 0, Assignment.current.for_employee(@ed.id).size
+      assert_equal 1, Assignment.current.for_employee(@ed.id).size
     end
 
     should "have a scope to find all past assignments for a store or employee" do
-      assert_equal 2, Assignment.past.for_store(@cmu.id).size
+      assert_equal 1, Assignment.past.for_store(@cmu.id).size
       assert_equal 0, Assignment.past.for_store(@oakland.id).size
       assert_equal 1, Assignment.past.for_employee(@ben.id).size
       assert_equal 0, Assignment.past.for_employee(@cindy.id).size

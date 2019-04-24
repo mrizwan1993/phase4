@@ -28,6 +28,8 @@ class Employee < ApplicationRecord
     scope :admins,          -> { where(role: 'admin') }
     scope :alphabetical,    -> { order('last_name, first_name') }
     
+    
+
     # Other methods
     def name
     "#{last_name}, #{first_name}"
@@ -60,9 +62,23 @@ class Employee < ApplicationRecord
     # Callback code  (NOT DRY!!!)
     # -----------------------------
     #private
+    
+    before_destroy :destroy_or_not
+    after_rollback :make_inactive, :terminate_assignment, :delete_future_shifts
+    
+    
+    def destroy_or_not
+        if has_worked_shift?
+          self.errors.add(:base, 'cannot delete this employee')
+          throw(:abort)
+        else
+          self.delete_assignment
+        end
+    end 
+  
     def has_worked_shift?
         shifts = Shift.for_employee(self.id)
-        shifts.nil?
+        shifts.to_a.size > 0
     end
     
     def delete_assignment
@@ -84,7 +100,10 @@ class Employee < ApplicationRecord
     end
     
     def delete_future_shifts
-        future_shifts = Shift.for_employee(self.id).upcoming
+        future_shifts = Shift.for_employee(self.id).upcoming.each do |shift|
+            shift.delete
+        end
+
     end
     
     def reformat_phone

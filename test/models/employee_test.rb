@@ -75,14 +75,14 @@ class EmployeeTest < ActiveSupport::TestCase
     
     # test scope younger_than_18
     should "show there are four employees over 18" do
-      assert_equal 4, Employee.is_18_or_older.size
-      assert_equal ["Gruberman", "Heimann", "Janeway", "Sisko"], Employee.is_18_or_older.map{|e| e.last_name}.sort
+      assert_equal 5, Employee.is_18_or_older.size
+      assert_equal ["Gruberman", "Heimann", "Janeway", "Rizwan", "Sisko"], Employee.is_18_or_older.map{|e| e.last_name}.sort
     end
     
     # test the scope 'active'
     should "shows that there are five active employees" do
-      assert_equal 5, Employee.active.size
-      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Sisko"], Employee.active.map{|e| e.last_name}.sort
+      assert_equal 6, Employee.active.size
+      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Rizwan", "Sisko"], Employee.active.map{|e| e.last_name}.sort
     end
     
     # test the scope 'inactive'
@@ -93,8 +93,8 @@ class EmployeeTest < ActiveSupport::TestCase
     
     # test the scope 'regulars'
     should "shows that there are 3 regular employees: Ed, Cindy and Ralph" do
-      assert_equal 3, Employee.regulars.size
-      assert_equal ["Crawford","Gruberman","Wilson"], Employee.regulars.map{|e| e.last_name}.sort
+      assert_equal 4, Employee.regulars.size
+      assert_equal ["Crawford","Gruberman", "Rizwan","Wilson"], Employee.regulars.map{|e| e.last_name}.sort
     end
     
     # test the scope 'managers'
@@ -127,7 +127,6 @@ class EmployeeTest < ActiveSupport::TestCase
       assert_equal @assign_cindy, @cindy.current_assignment # only 1 assignment ever
       assert_equal @promote_ben, @ben.current_assignment # 2 assignments, returns right one
       # person had assignments but has no current assignment
-      assert_nil @ed.current_assignment
       @assign_cindy.update_attribute(:end_date, Date.current)
       @cindy.reload
       assert_nil @cindy.current_assignment
@@ -165,7 +164,6 @@ class EmployeeTest < ActiveSupport::TestCase
       @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
       @mrizwan.destroy
       assert @mrizwan.destroyed?
-      assert @mrizwan_test.destroyed?
       @cmu.destroy
     end
     
@@ -173,9 +171,30 @@ class EmployeeTest < ActiveSupport::TestCase
       @cmu = FactoryBot.create(:store)      
       @mrizwan_test = FactoryBot.create(:assignment, employee: @mrizwan, store: @cmu, start_date: Date.today, end_date: nil, pay_level: 3)
       @mrizwan_shift = FactoryBot.create(:shift, assignment: @mrizwan_test, date: Date.tomorrow)
+      assert_equal true, @mrizwan.has_worked_shift?
+      @mrizwan.delete_assignment
+      assert_equal [], @mrizwan.assignments
       @mrizwan.destroy
-      assert !@mrizwan.destroyed?
+      assert @mrizwan.destroyed?
       @cmu.destroy
+    end
+    
+    should "show that employees' future shifts and current assignments
+    can be terminated" do
+      @teststore = FactoryBot.create(:store)
+      @testemployee=FactoryBot.create(:employee)
+      @testassignment = FactoryBot.create(:assignment, employee: @testemployee, store: @teststore, start_date: Date.today, end_date: nil, pay_level: 3)
+      @testshift = FactoryBot.create(:shift, assignment: @testassignment, date: Date.tomorrow)
+      
+      
+
+      assert_raise(Exception) {@testemployee.destroy_or_not}
+      assert_equal true, @testemployee.has_worked_shift?
+      @testemployee.destroy
+      @testshift.destroy
+      @testassignment.destroy
+      @testemployee.destroy
+      @teststore.destroy
     end
   end
 end

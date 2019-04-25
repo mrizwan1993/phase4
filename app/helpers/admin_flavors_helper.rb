@@ -1,0 +1,2 @@
+module AdminFlavorsHelper
+end

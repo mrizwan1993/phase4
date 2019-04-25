@@ -1,17 +1,118 @@
-<%= form_with(model: flavor, local: true) do |form| %>
-  <% if flavor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(flavor.errors.count, "error") %> prohibited this flavor from being saved:</h2>
+<!DOCTYPE html>
+<html>
+<head>
 
-      <ul>
-      <% flavor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<!--Define custom css for links-->
+<style type="text/css">
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+</style>
 
-  <div class="actions">
-    <%= form.submit %>
+<!--Reference to the Title in the webpage tab and then :: + the name of the page's controller and the action defined within-->
+<title>The A&M Creamery Admin HUB :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+
+<!--Refers to the stylesheet for the page-->
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= csrf_meta_tags %>
+
+</head>
+<body>
+
+<!-- Full definition of the top nav bar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+
+  <!--Code for the actual nav bar-->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo heading">The A&M Creamery</a>
+        <ul class="right">
+          <li><a class="dropdown-button white-text" href=<%= stores_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Employees<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Managers<i class="material-icons left">group</i></a></li>          
+          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Assignments<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Shifts<i class="material-icons left">access_time</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
+        </ul>
+      </div>
+    </nav>
   </div>
+
+    <h2 class="heading">New Flavor</h2>
+<div class="center-align">
+    <!--Create a button linking to stores list-->
+    <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= flavors_path%>>List Flavors</a></li>
+</div>
+
+
+<!--Put all the elements in a container div spanning all 12 columns of the web page - Using Materialize -->
+<div class="container col s12 center">
+  <div class="container">
+  <!-- Generate a form with the model of flavor and the variable 'form' being the main object -->
+  <%= form_with(model: flavor, local: true) do |form| %>
+    <!-- If there are any errors while defining flavor-->
+    <% if flavor.errors.any? %>
+      <!-- Then give this explanation along with the number of errors -->
+      <div id="error_explanation">
+        <h2><%= pluralize(flavor.errors.count, "error") %> prohibited this flavor from being saved:</h2>
+        <ul>
+        <!--Print the errors here then-->
+        <% flavor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!--Create the table with the form in it-->
+  	<table border="0" cellspacing="5" cellpadding="5">
+  		<tr valign="top">
+  			<td>
+            <div class="input-field">
+              <!--the active class prevents the field label overlapping with the field data-->
+              <%= form.label :name, :class=> "active heading" %>
+              <%= form.text_field :name %>
+            </div>
+          
+            <div class="input-field">
+              <%= form.label :active, :class=> "active heading" %><br/>
+              <%= form.select :active, ['true', 'false'], :prompt => "Select true or false" %>
+            </div>
+          
+            <!--Submit & Cancel buttons-->
+            <div class="actions center-align">
+      			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+      			  <%= link_to 'Cancel', flavors_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+    			  </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--Init the footer with ID = form for styling purposes-->
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+      </div>
+    </div>
+  </div>
+</footer>
+
 <% end %>

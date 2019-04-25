@@ -1,4 +1,5 @@
 class ShiftJobsController < ApplicationController
+  layout 'shift_jobs.html.erb'
   before_action :set_shift_job, only: [:show, :edit, :update, :destroy]
 
   # GET /shift_jobs

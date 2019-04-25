@@ -1,0 +1,2 @@
+module ManagerAssignmentsViewHelper
+end

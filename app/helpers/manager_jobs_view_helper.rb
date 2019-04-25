@@ -1,0 +1,2 @@
+module ManagerJobsViewHelper
+end

@@ -1,4 +1,5 @@
 class StoreFlavorsController < ApplicationController
+  layout 'admin_store_flavors.html.erb'
   before_action :set_store_flavor, only: [:show, :edit, :update, :destroy]
 
   # GET /store_flavors

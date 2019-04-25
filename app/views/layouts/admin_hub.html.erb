@@ -45,7 +45,7 @@
           <li><a class="dropdown-button white-text" href=<%=  %>>Shifts<i class="material-icons left">access_time</i></a></li>
           <li><a class="dropdown-button white-text" href=<%=  %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= employees_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
         </ul>
       </div>
@@ -126,9 +126,9 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
             </div>
 
             <div class="card-action center-align">
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>New Flavor</a></li><br/><br/>             
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>List Flavors</a></li>              
-              
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_flavor_path  %>>New Flavor</a></li><br/><br/>             
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= admin_flavors_index_path  %>>List Flavors</a></li><br/><br/>              
+                            <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= store_flavors_path  %>>Store Flavors</a></li><br/><br/> 
             </div>
           </div>
         </div>

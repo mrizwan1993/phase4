@@ -5,7 +5,7 @@ class User < ApplicationRecord
     validates_uniqueness_of :email, :employee_id
     validate :is_active_employee, on: :create
     validate :is_active_employee, on: :update
-    validates_format_of :email,:with => /\A[a-zA-Z0-9]+([\w\.\'\!\#\$\%\&\*\+\-\/\=\?\^\`\{\|\}\~])*([a-zA-Z0-9])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}\z/
+    validates_format_of :email, with: /@/, message: "is not a valid format"
 
     
     def is_active_employee

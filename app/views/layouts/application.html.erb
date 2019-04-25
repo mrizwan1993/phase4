@@ -21,12 +21,12 @@
 <body>
   
     <!-- Gets the data from the file quick links -->
-    <%= render partial: 'partials/quick_links' %>
-    
+
     <!-- Gets data from any page that has the yield -->
-    <%= yield %>
+  
 
 </body>
+  <%= yield %>
 
 <!--sources the javascript file and the stylesheet, also formats the toasts-->
 <%= javascript_include_tag "application" %>

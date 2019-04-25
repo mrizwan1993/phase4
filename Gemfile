@@ -37,7 +37,7 @@ gem 'materialize-sass'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'activesupport'
 
-
+gem 'sqlite3','~> 1.3.6'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -77,7 +77,7 @@ end
 gem 'jquery-rails'
 gem 'validates_timeliness'
 gem 'will_paginate'
-gem "bcrypt"
+gem 'bcrypt', '~> 3.1.7'
 gem "adroit-age"
 # # Gems used only in testing
 # group :development, :test do

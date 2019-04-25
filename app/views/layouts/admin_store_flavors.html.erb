@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  /*Makes the links black in color*/
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+
+  <!--Code for the actual nav bar-->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo heading">The A&M Creamery</a>
+        <ul class="right">
+          <li><a class="dropdown-button white-text" href=<%= stores_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Employees<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Managers<i class="material-icons left">group</i></a></li>          
+          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Assignments<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Shifts<i class="material-icons left">access_time</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_flavors_index_path  %>>Flavors<i class="material-icons left">view_list</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+<p id="notice"><%= notice %></p>
+
+<h2 class="heading">All Store Flavors</h2>
+<!--Create table headings with details of employees-->
+<table class="bordered highlight centered responsive-table">
+  <thead>
+    <tr>
+      <th class="heading">Store ID</th>
+      <th class="heading">Store Name</th>
+      <th class="heading">Flavor ID</th>
+      <th class="heading">Flavor Name</th>
+      <div class="center-align">
+      <!--Link to add a new employee with a button-->
+      <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_flavor_path %>><i class="material-icons left">add</i>Add Store Flavor</a></li>
+      </div>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <!--Create the body of the table with links to the fields of the schema -->
+  <tbody>
+    <% @storeflavors = StoreFlavor.all %>
+    <% @storeflavors.each do |flavor, store| %>
+      <tr>
+        <td class="heading"><%= store.id %></td>
+        <td class="heading"><%= store.name %></td>
+        <td class="heading"><%= flavor.id %></td>  
+        <td class="heading"><%= flavor.name %></td>
+        <!--3 buttons with each employee record to view info, edit and delete it respectively-->
+        <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= store_flavor_path(store_flavor) %>><i class="material-icons left">info</i></a></td>
+        <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= edit_store_flavor_path(store_flavor) %>><i class="material-icons left">edit</i></a></td></td>
+        <td class="heading"><%= button_to "Del", store_flavor, data: {confirm: "Are you sure?" }, method: :delete, :class=>"waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<!--Add a footer to this page with an ID for styling purposes-->
+<footer class="page-footer" id="normal">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <%= render partial: 'partials/footer' %>
+      </div>
+    </div>
+  </div>
+</footer>

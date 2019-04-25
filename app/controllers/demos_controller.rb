@@ -1,26 +1,21 @@
 class DemosController < ApplicationController
-    
     layout 'login.html.erb'
     def new
     end
     
     def create
-       user = User.find_by(email: params[:loginpage][:email].downcase) 
-       
-       if user && user.authenticate(params[:loginpage][:password])
+       user = User.find_by(email: params[:demo][:email]) 
+       if user && user.authenticate(params[:demo][:password])
+           role=user.user_role
            login(user)
-           employee_user = Employee.find(user.user_employee_id)
-            if employee_user.role == 'admin'
-                redirect_to admin_hub_index_path 
-                return
-            
-            elsif employee_user.role == 'manager'
+            if role == 'admin'
+                redirect_to admin_hub_index_path
+                
+            elsif role == 'manager'
                 redirect_to manager_hub_index_path 
-                return
             
             else
                 redirect_to employee_hub_index_path 
-                return
             end
             
        else

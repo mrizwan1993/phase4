@@ -1,0 +1,2 @@
+module AdminAssignmentsViewHelper
+end

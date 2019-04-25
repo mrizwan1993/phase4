@@ -1,0 +1,2 @@
+module AdminStoresViewHelper
+end

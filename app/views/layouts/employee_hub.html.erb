@@ -1,34 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!--Define custom css for links-->
 <style type="text/css">
+  /*Makes the links black in color*/
   a:link {color: black;}      /* unvisited link */
   a:visited {color: black;}   /* visited link */
   a:hover {color: black;}     /* mouse over link */
   a:active {color: black;}    /* selected link */
+
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
 </style>
-
-<!--Reference to the Title in the webpage tab and then :: + the name of the page's controller and the action defined within-->
-<title>The A&M Creamery Employee HUB :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
-
-<!--Refers to the stylesheet for the page-->
-<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-<%= csrf_meta_tags %>
-
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
 </head>
-<body>
-
-<!-- Full definition of the top nav bar-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-    <!-- Compiled and minified CSS -->
-
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
 
   <!--Code for the actual nav bar-->
   <div class="navbar-fixed">
@@ -38,14 +26,18 @@
         <a href="/" class="brand-logo heading">The A&M Creamery</a>
         <ul class="right">
           <li><a class="dropdown-button white-text" href=<%= stores_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Jobs<i class="material-icons left">assignment</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= jobs_path %>>Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Assignment<i class="material-icons left">assignment</i></a></li>          
+          <li><a class="dropdown-button white-text" href=<%= shift_jobs_path %>>Shift-Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= flavors_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= show_employee_path(Employee.find(session[:user_id]))  %>>Profile<i class="material-icons left">person</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
         </ul>
       </div>
     </nav>
   </div>
+
+
 
     
 
@@ -75,13 +67,12 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
           <!--Uses Materialize's inbuilt card class to create the homepage cards-->
           <div class="card small">
             <div class="card-image">
-                          <br/><br/><br/>
+                          <br/><br/>
               <img class="card-image" src="/assets/store.png">
             </div>
             <!--Uses the div to align the links on the cards-->
             <div class="card-action center-align">
               <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= stores_path  %>>List Stores</a></li><br/><br/>
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>Active Stores</a></li>
             </div>
           </div>
         </div>
@@ -96,11 +87,11 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
         <div class="col s12 m12">
           <div class="card small">
             <div class="card-image">
-                          <br/><br/><br/>
+                          <br/><br/>
               <img class="card-image" src="/assets/assignment.png">
             </div>
             <div class="card-action center-align">
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  %>>List Jobs</a></li>
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= jobs_path  %>>List Jobs</a></li>
             </div>
           </div>
         </div>
@@ -111,13 +102,13 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
       <div class="col s10">
         <div class="col s12 m12">
           <div class="card small">
-            <br/><br/><br/>
+            <br/><br/>
             <div class="card-image">
               <img class="card-image" src="/assets/flavors.png">
             </div>
 
             <div class="card-action center-align">
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>List Flavors</a></li>              
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= flavors_path  %>>List Flavors</a></li>              
               
             </div>
           </div>
@@ -137,10 +128,9 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
             <div class="divider"></div>
             <br/>
             <!--Uses the div to align the links on the cards-->
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>Emp. Info</a></li><br/><br/>
               <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>User Info</a></li><br/><br/>
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>Shifts</a><br/><br/>
-              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=   %>>Assgmts.</a>
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= shifts_path  %>>Shifts</a><br/><br/>
+              <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  assignments_path %>>Assgmts.</a>
           </div>
         </div>
       </div>
@@ -155,7 +145,23 @@ SECOND CARD, AND THE THIRD CARD USES THE SAME STRUCTURE AS THE FIRST TWO CARDS--
   <div class="row">
     <!--stretches the footer across the enter 12-columned page-->
     <div class="col s12 center">
-      <%= render partial: 'partials/footer' %>
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= employee_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
 </footer>

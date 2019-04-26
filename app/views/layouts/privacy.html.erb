@@ -76,11 +76,26 @@
   <div class="row">
     <!--stretches the footer across the enter 12-columned page-->
     <div class="col s12 center">
-      <%= render partial: 'partials/footer' %>
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= landing_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
 </footer>
-
 <!--sources the javascript file and the stylesheet, also formats the toasts-->
 <%= javascript_include_tag "application" %>
 <% flash.each do |message_type, message| %>

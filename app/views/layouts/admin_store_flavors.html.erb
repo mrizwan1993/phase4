@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!--Define custom css for links-->
 <style type="text/css">
-  /*Makes the links black in color*/
   a:link {color: black;}      /* unvisited link */
   a:visited {color: black;}   /* visited link */
   a:hover {color: black;}     /* mouse over link */
   a:active {color: black;}    /* selected link */
-
-  /*Makes the links white in color*/
-  nav ul li a{
-  color: white;
-} 
 </style>
-  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+
+<!--Reference to the Title in the webpage tab and then :: + the name of the page's controller and the action defined within-->
+<title>The A&M Creamery Admin HUB :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+
+<!--Refers to the stylesheet for the page-->
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= csrf_meta_tags %>
+
 </head>
+<body>
+
+<!-- Full definition of the top nav bar-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 
   <!--Code for the actual nav bar-->
@@ -26,21 +37,20 @@
         <img class="logo" src="/assets/Logo.png"></img>
         <a href="/" class="brand-logo heading">The A&M Creamery</a>
         <ul class="right">
-          <li><a class="dropdown-button white-text" href=<%= stores_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employees_path %>>Employees<i class="material-icons left">person</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%=  %>>Managers<i class="material-icons left">group</i></a></li>          
-          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Assignments<i class="material-icons left">assignment</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%=  %>>Jobs<i class="material-icons left">assignment</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%=  %>>Shifts<i class="material-icons left">access_time</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%=  %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= admin_flavors_index_path  %>>Flavors<i class="material-icons left">view_list</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_stores_view_index_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_employees_view_index_path %>>Employees<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_manager_views_index_path  %>>Managers<i class="material-icons left">group</i></a></li>          
+          <li><a class="dropdown-button white-text" href=<%= admin_assignments_view_index_path %>>Assignments<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_jobs_view_index_path  %>>Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_shifts_view_index_path %>>Shifts<i class="material-icons left">access_time</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_shift_jobs_view_index_path %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= admin_flavors_index_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= show_employee_path(Employee.find(session[:user_id])) %>>Profile<i class="material-icons left">person</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
         </ul>
       </div>
     </nav>
   </div>
-
 
 <p id="notice"><%= notice %></p>
 
@@ -50,9 +60,7 @@
   <thead>
     <tr>
       <th class="heading">Store ID</th>
-      <th class="heading">Store Name</th>
       <th class="heading">Flavor ID</th>
-      <th class="heading">Flavor Name</th>
       <div class="center-align">
       <!--Link to add a new employee with a button-->
       <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_flavor_path %>><i class="material-icons left">add</i>Add Store Flavor</a></li>
@@ -64,12 +72,10 @@
   <!--Create the body of the table with links to the fields of the schema -->
   <tbody>
     <% @storeflavors = StoreFlavor.all %>
-    <% @storeflavors.each do |flavor, store| %>
+    <% @storeflavors.each do |store_flavor| %>
       <tr>
-        <td class="heading"><%= store.id %></td>
-        <td class="heading"><%= store.name %></td>
-        <td class="heading"><%= flavor.id %></td>  
-        <td class="heading"><%= flavor.name %></td>
+        <td class="heading"><%= store_flavor.store.id %></td>
+        <td class="heading"><%= store_flavor.flavor.id %></td>  
         <!--3 buttons with each employee record to view info, edit and delete it respectively-->
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= store_flavor_path(store_flavor) %>><i class="material-icons left">info</i></a></td>
         <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= edit_store_flavor_path(store_flavor) %>><i class="material-icons left">edit</i></a></td></td>
@@ -80,14 +86,29 @@
 </table>
 
 
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
 
-<!--Add a footer to this page with an ID for styling purposes-->
-<footer class="page-footer" id="normal">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 center">
-        <%= render partial: 'partials/footer' %>
-      </div>
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= admin_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
 </footer>

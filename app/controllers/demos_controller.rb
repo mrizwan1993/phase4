@@ -26,6 +26,6 @@ class DemosController < ApplicationController
     
     def destroy
         logout
-        redirect_to root_url
+        redirect_to new_demo_path
     end
 end

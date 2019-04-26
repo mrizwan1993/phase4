@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  /*Makes the links black in color*/
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
+
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+  <!--Code for the actual nav bar-->
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <img class="logo" src="/assets/Logo.png"></img>
+        <a href="/" class="brand-logo heading">The A&M Creamery</a>
+        <ul class="right">
+          <li><a class="dropdown-button white-text" href=<%= stores_path %>>Stores<i class="material-icons left">local_mall</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= jobs_path %>>Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= assignments_path %>>Assignment<i class="material-icons left">assignment</i></a></li>          
+          <li><a class="dropdown-button white-text" href=<%= shift_jobs_path %>>Shift-Jobs<i class="material-icons left">assignment</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= flavors_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= show_employee_path(Employee.find(session[:user_id]))  %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+<p id="notice"><%= notice %></p>
+
+<h2 class="heading">Store Details:</h2><br/>
+<!--create a row of table headings for viewing a store's profile-->
+<div class="row center-align">
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  stores_path %>><i class="material-icons left">arrow_back</i>Store List</a></li>
+</div>
+<table class="bordered highlight centered responsive-table">
+  <thead>
+    <tr>
+      <th class="heading">Name</th>
+      <th class="heading">Street</th>
+      <th class="heading">City</th>
+      <th class="heading">State</th>
+      <th class="heading">Zip</th>
+      <th class="heading">Phone</th>
+      <th class="heading">Latitude</th>
+      <th class="heading">Longitude</th>
+      <th class="heading">Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+<!--create the body of the table with links to fields of the store-->
+  <tbody>
+    <tr>
+      <td class="heading"><%= @store.name %></td>
+      <td class="heading"><%= @store.street %></td>
+      <td class="heading"><%= @store.city %></td>
+      <td class="heading"><%= @store.state %></td>
+      <td class="heading"><%= @store.zip %></td>
+      <td class="heading"><%= @store.phone %></td>
+      <td class="heading"><%= @store.latitude %></td>
+      <td class="heading"><%= @store.longitude %></td>
+      <td class="heading"><%= @store.active %></td>
+    </tr>
+  </tbody>
+</table>
+<!--create buttons with links in a row-->
+</div>
+
+
+
+
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= employee_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
+    </div>
+  </div>
+</footer>

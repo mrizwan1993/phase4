@@ -10,11 +10,21 @@ class ShiftsController < ApplicationController
   # GET /shifts/1
   # GET /shifts/1.json
   def show
+  if session[:role] == 'manager'
+    render partial: 'partials/manager_show_shifts'
+
+  elsif session[:role] == 'admin'
+    render partial: 'partials/admin_show_shifts'
+  
+  else
+    render partial: 'partials/employee_show_shifts'
+  end
   end
 
   # GET /shifts/new
   def new
     @shift = Shift.new
+
   end
 
   # GET /shifts/1/edit
@@ -68,7 +78,7 @@ class ShiftsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def shift_params
-      params.fetch(:shift, {})
+     def shift_params
+      params.require(:shift).permit(:date, :start_time, :end_time, :notes, :assignment_id)
     end
 end

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h2 class="heading">Store Details:</h2><br/>
+<div class="row center-align">
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_path%>><i class="material-icons left">add_location</i>Add a Store</a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_store_path(@store) %>><i class="material-icons left">edit</i>Edit</a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  stores_path %>><i class="material-icons left">arrow_back</i>Store List</a></li>
+</div>
 <!--create a row of table headings for viewing a store's profile-->
 <table class="bordered highlight centered responsive-table">
   <thead>
@@ -30,10 +35,7 @@
       <td class="heading"><%= @store.latitude %></td>
       <td class="heading"><%= @store.longitude %></td>
       <td class="heading"><%= @store.active %></td>
-
+    </tr>
+  </tbody>
+</table>
 <!--create buttons with links in a row-->
-<div class="row center-align">
-  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_path%>><i class="material-icons left">add_location</i>Add a Store</a></li>
-  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_store_path(@store) %>><i class="material-icons left">edit</i>Edit</a></li>
-  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  stores_path %>><i class="material-icons left">arrow_back</i>Store List</a></li>
-</div>

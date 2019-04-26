@@ -1,5 +1,46 @@
-<h1>New Shift Job</h1>
+<% if session[:role] == 'manager' %>
+<%= render partial: 'partials/manager_nav_bar' %>
 
-<%= render 'form', shift_job: @shift_job %>
+<% elsif session[:role] == 'admin' %>
 
-<%= link_to 'Back', shift_jobs_path %>
+<%= render partial: 'partials/admin_nav_bar' %>
+
+<% else %>
+<%= render partial: 'partials/manager_nav_bar' %>
+<% end %>
+
+
+<h2 class="heading">New Shift</h2>
+<div class="center-align">
+    <!--Create a button linking to stores list-->
+    <!--Create a button linking to stores list-->
+    <% if session[:role] == 'admin' %>
+    <% admin_path=admin_shift_jobs_view_index_path %>
+
+    <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  admin_path  %>>List Shift Jobs</a></li>
+    
+    <% else %>
+        <% manager_path=manager_shift_jobs_view_index_path %>
+     <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= manager_path %>>List Shift Jobs</a></li>
+     <% end %>
+</div>
+<!--Render the form and link the variable store to the instance variable @store object created by the form-->
+<%= render 'form', shift: @shift_job %>
+
+
+
+
+
+
+
+<% if session[:role] == 'manager' %>
+<%= render partial: 'partials/manager_footer' %>
+
+<% elsif session[:role] == 'admin' %>
+
+<%= render partial: 'partials/admin_footer' %>
+
+<% else %>
+<%= render partial: 'partials/manager_footer' %>
+<% end %>
+

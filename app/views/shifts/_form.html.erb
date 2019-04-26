@@ -1,17 +1,72 @@
-<%= form_with(model: shift, local: true) do |form| %>
-  <% if shift.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
 
-      <ul>
-      <% shift.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+
+<!--Put all the elements in a container div spanning all 12 columns of the web page - Using Materialize -->
+<div class="container col s12 center">
+  <div class="container">
+  <!-- Generate a form with the model of shift and the variable 'form' being the main object -->
+  <%= form_with(model: shift, local: true) do |form| %>
+    <!-- If there are any errors while defining shift-->
+    <% if shift.errors.any? %>
+      <!-- Then give this explanation along with the number of errors -->
+      <div id="error_explanation">
+        <h2><%= pluralize(shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
+        <ul>
+        <!--Print the errors here then-->a6
+        <% shift.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!--Create the table with the form in it-->
+  	<table border="0" cellspacing="5" cellpadding="5">
+  		<tr valign="top">
+  			<td>
+          <div class="input-field">
+          <!--the active class prevents the field label overlapping with the field data-->
+  				<%= form.label :date, :class=> "active heading" %>
+  				<%= form.text_field :date, prompt: "Start Date", class: "datepicker", :value => (form.object.date.strftime('%B %d, %Y') if form.object.date != nil)%>
+          </div>
+          
+          <div class="input-field">
+  				<%= form.label :start_time, :class=> "active heading" %>
+  				<%= form.text_field :start_time, prompt: "Start Time", class: "timepicker", :value =>(form.object.start_time.strftime("%I:%m %p") if form.object.start_time != nil)%>
+            </div>
+          
+          <div class="input-field">
+  				<%= form.label :end_time, :class=> "active heading" %>
+  				<%= form.text_field :end_time, prompt: "End Time", class: "timepicker", :value =>(form.object.end_time.strftime("%I:%m %p") if form.object.end_time != nil)%>
+            </div>
+          
+            <div class="input-field">
+              <%= form.label :notes, :class=> "active heading" %>
+              <%= form.text_field :notes %>
+            </div>
+            
+          <div class="input-field">
+            <%= form.label :assignment_id, class: "active" %>
+            <!--<%= form.collection_select :assignment_id, Assignment.chronological, :id, :id, :prompt => "Select One" %>-->
+            <%  if session[:role] == 'manager' %>
+              <%= form.select(:assignment_id, assignment_for_select_for_manager(session[:user_id]), :prompt => 'Select') %>
+            <% else %>
+              <%= form.select(:assignment_id, assignment_for_select_for_admin, :prompt => 'Select') %>
+            <% end %>
+          </div>
+        </div>
+          
+            <!--Submit & Cancel buttons-->
+            <div class="actions center-align">
+      			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+      			  <%= link_to 'Cancel', admin_shifts_view_index_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+    			  </div>
+        </td>
+      </tr>
+    </table>
   </div>
+</div>
+
+
+
 <% end %>

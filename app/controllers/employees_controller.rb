@@ -10,6 +10,18 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
+  if session[:role] == 'manager'
+    render partial: 'partials/manager_show_employee'
+
+  elsif session[:role] == 'admin'
+    render partial: 'partials/admin_show_employee'
+  
+  elsif session[:role] == 'employee'
+    render partial: 'partials/employee_show_employee'
+    
+  else
+    render partial: 'partials/manager_show_employee'
+  end
   end
 
   # GET /employees/new

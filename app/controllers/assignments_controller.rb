@@ -10,6 +10,15 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
+  if session[:role] == 'manager'
+    render partial: 'partials/manager_show_assignment'
+
+  elsif session[:role] == 'admin'
+    render partial: 'partials/admin_show_assignment'
+  
+  else
+    render partial: 'partials/employee_show_assignment'
+  end
   end
 
   # GET /assignments/new

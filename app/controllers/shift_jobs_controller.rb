@@ -1,5 +1,4 @@
 class ShiftJobsController < ApplicationController
-  layout 'shift_jobs.html.erb'
   before_action :set_shift_job, only: [:show, :edit, :update, :destroy]
 
   # GET /shift_jobs
@@ -11,6 +10,15 @@ class ShiftJobsController < ApplicationController
   # GET /shift_jobs/1
   # GET /shift_jobs/1.json
   def show
+  if session[:role] == 'manager'
+    render partial: 'partials/manager_show_shift_jobs'
+
+  elsif session[:role] == 'admin'
+    render partial: 'partials/admin_show_shift_jobs'
+  
+  else
+    render partial: 'partials/employee_show_shift_jobs'
+  end
   end
 
   # GET /shift_jobs/new
@@ -70,6 +78,6 @@ class ShiftJobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shift_job_params
-      params.fetch(:shift_job, {})
+      params.require(:shift_job).permit(:shift_id, :job_id)
     end
 end

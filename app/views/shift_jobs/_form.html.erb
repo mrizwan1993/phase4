@@ -1,17 +1,53 @@
-<%= form_with(model: shift_job, local: true) do |form| %>
-  <% if shift_job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(shift_job.errors.count, "error") %> prohibited this shift_job from being saved:</h2>
-
-      <ul>
-      <% shift_job.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<!--Put all the elements in a container div spanning all 12 columns of the web page - Using Materialize -->
+<div class="container col s12 center">
+  <div class="container">
+  <!-- Generate a form with the model of shift_job and the variable 'form' being the main object -->
+  <%= form_with(model: @shift_job, local: true) do |form| %>
+    <!-- If there are any errors while defining shift_job-->
+    <% if @shift_job.errors.any? %>
+      <!-- Then give this explanation along with the number of errors -->
+      <div id="error_explanation">
+        <h2><%= pluralize(@shift_job.errors.count, "error") %> prohibited this shift_job from being saved:</h2>
+        <ul>
+        <!--Print the errors here then-->a6
+        <% @shift_job.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!--Create the table with the form in it-->
+  	<table border="0" cellspacing="5" cellpadding="5">
+  		<tr valign="top">
+  			<td>
+          <div class="form-inputs">
+            <div class="input-field">
+              <%= form.label :shift_id, class: "active" %>
+              <%  if session[:role] == 'manager' %>
+                <%= form.select(:shift_id, shift_for_select_for_manager(session[:user_id]), :prompt => 'Select') %>
+              <% else %>
+                <%= form.select(:shift_id, shift_for_select_for_admin, :prompt => 'Select') %>
+              <% end %>
+            </div>
+            <div class="input-field">
+              <%= form.label :job_id, class: "active" %>
+              <%= form.collection_select :job_id, Job.active.alphabetical, :id, :name, :prompt => "Select One" %>
+            </div>
+          </div>
+        </div>
+          
+            <!--Submit & Cancel buttons-->
+            <div class="actions center-align">
+      			  <%= form.submit :class=>"waves-effect waves-red deep-orange darken-4 hoverable btn white-text" %>
+      			  <%= link_to 'Cancel', admin_shifts_view_index_path, :class => 'waves-effect waves-red deep-orange darken-4 hoverable btn white-text' %>
+    			  </div>
+        </td>
+      </tr>
+    </table>
   </div>
+</div>
+
+
+
 <% end %>

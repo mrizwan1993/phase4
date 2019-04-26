@@ -2,23 +2,19 @@ module Contexts
   module EmployeeContexts
     # Context for employees 
     def create_employees
-      @ed = FactoryBot.create(:employee)
       @cindy = FactoryBot.create(:employee, first_name: "Cindy", last_name: "Crawford", ssn: "084-35-9822", date_of_birth: 17.years.ago.to_date)
       @ralph = FactoryBot.create(:employee, first_name: "Ralph", last_name: "Wilson", active: false, date_of_birth: 16.years.ago.to_date)
       @ben = FactoryBot.create(:employee, first_name: "Ben", last_name: "Sisko", role: "manager", phone: "412-268-2323")
       @kathryn = FactoryBot.create(:employee, first_name: "Kathryn", last_name: "Janeway", role: "manager", date_of_birth: 30.years.ago.to_date)
       @alex = FactoryBot.create(:employee, first_name: "Alex", last_name: "Heimann", role: "admin")
-      @mrizwan = FactoryBot.create(:employee, first_name: "Muhammad Taimur", last_name: "Rizwan", role: "employee")
     end
     
     def remove_employees
-      @ed.destroy
       @cindy.destroy
       @ralph.destroy
       @ben.destroy
       @kathryn.destroy
       @alex.destroy
-      @mrizwan.destroy
     end
 
     def create_additional_employees

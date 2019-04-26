@@ -1,55 +1,36 @@
-<!-- Full definition of the top nav bar-->
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  /*Makes the links black in color*/
+  a:link {color: black;}      /* unvisited link */
+  a:visited {color: black;}   /* visited link */
+  a:hover {color: black;}     /* mouse over link */
+  a:active {color: black;}    /* selected link */
 
-  <!--Stores-->
-  <ul id="dropdown1" class="dropdown-content">
-    <li class="waves-effect waves-red hoverable"><a href=<%= new_store_path %>><i class="material-icons left">add_location</i>Add</a></li>
-    <li class="divider" tabindex="-1"></li>
-    <li class="waves-effect waves-red hoverable"><a href=<%= stores_path %>><i class="material-icons left">view_list</i>List</a></li>
-    <li class="divider" tabindex="-1"></li>
-  </ul>
+  /*Makes the links white in color*/
+  nav ul li a{
+  color: white;
+} 
+</style>
+  <title>The Amazing & Marvelous Creamery :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
 
-  <!--Employee-->
-  <ul id="dropdown2" class="dropdown-content">
-    <li class="waves-effect waves-red hoverable"><a href=<%= new_employee_path %>><i class="material-icons left">person_add</i>Add</a></li>
-    <li class="divider" tabindex="-1"></li>
-    <li class="waves-effect waves-red hoverable"><a href=<%= employees_path %>><i class="material-icons left">view_list</i>List</a></li>
-    <li class="divider" tabindex="-1"></li>
-  </ul>
-  
-  <!--Assignment-->
-  <ul id="dropdown3" class="dropdown-content">
-    <li class="waves-effect waves-red hoverable"><a href=<%= new_assignment_path %>><i class="material-icons left">note_add</i>Add</a></li>
-    <li class="divider" tabindex="-1"></li>
-    <li class="waves-effect waves-red hoverable"><a href=<%= assignments_path %>><i class="material-icons left">view_list</i>List</a></li>
-    <li class="divider" tabindex="-1"></li>
-  </ul>
 
-  <!--Code for the actual nav bar-->
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <img class="logo" src="/assets/Logo.png"></img>
-        <a href="/" class="brand-logo heading">The A&M Creamery</a>
-        <ul class="right">
-          <li><a class="dropdown-button white-text" data-activates="dropdown1" href=<%= stores_path %>><i class="material-icons left">local_mall</i>Stores<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button white-text" data-activates="dropdown2" href=<%= employees_path %>><i class="material-icons left">person</i>Employees<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a class="dropdown-button white-text" data-activates="dropdown3" href=<%= assignments_path %>><i class="material-icons left">work</i>Assignments<i class="material-icons right">arrow_drop_down</i></a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
 
-    <h2 class="heading">New Employee</h2>
-<div class="center-align">
-    <!--Create a button linking to employees list-->
-    <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= employees_path%>>List Employees</a></li>
-</div>
 
 <!--Put all the elements in a container div spanning all 12 columns of the web page - Using Materialize -->
 <div class="container col s12 center">
   <div class="container">
   <!-- Generate a form with the model of employee and the variable 'form' being the main object -->
   <%= form_with(model: employee, local: true) do |form| %>
+  <!--sources the javascript file and the stylesheet, also formats the toasts-->
+<%= javascript_include_tag "application" %>
+<% flash.each do |message_type, message| %>
+<%= javascript_tag "Materialize.toast('#{message}', classes: 'rounded', 4000)" %>
+<% end %>
     <!-- If there are any errors while defining employee-->
     <% if employee.errors.any? %>
       <!-- Then give this explanation along with the number of errors -->
@@ -63,11 +44,12 @@
         </ul>
       </div>
     <% end %>
-    
+
     <!--Create the table with the form in it-->
   	<table border="0" cellspacing="5" cellpadding="5">
   		<tr valign="top">
   			<td>
+  			                    
             <div class="input-field">
             <!--the active class prevents the field label overlapping with the field data-->
               <%= form.label :first_name, :class=> "active heading" %>
@@ -80,8 +62,13 @@
             </div>
           
             <div class="input-field">
-              <%= form.label :ssn, :class=> "active heading" %>
-              <%= form.text_field :ssn %>
+              <%= form.label :ssn, class: "active heading" %>
+
+              <% if session[:role] == 'employee'  %>
+                <%= form.text_field :ssn, disabled: true %>
+              <% else  %>
+                <%= form.text_field :ssn  %>
+              <% end  %>
             </div>
           
             <div class="input-field">
@@ -116,7 +103,7 @@
               <%= field.label "Password", :class=>"active heading" %>
               <%= field.password_field :password %>
             </div>
-            <% end %>
+
             
             <!--Submit & Cancel buttons-->
             <div class="actions center-align">
@@ -125,20 +112,38 @@
     			  </div>
         </td>
       </tr>
+<% end %>
     </table>
+    <% end %>
   </div>
 </div>
 
-<!--Init the footer with ID = form for styling purposes-->
+
+<!--initializes the footer-->  
 <footer class="page-footer" id="form">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 center">
-        <%= render partial: 'partials/footer' %>
-      </div>
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= admin_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
+  
 </footer>
-
-<% end %>
-
+</html>

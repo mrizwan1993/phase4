@@ -1,4 +1,47 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_store_flavor_path(@store_flavor) %> |
-<%= link_to 'Back', store_flavors_path %>
+
+<% if session[:role] == 'manager'%>
+<%= render partial: 'partials/manager_nav_bar'  %>
+<% elsif session[:role] == 'admin' %>
+<%=render partial: 'partials/admin_nav_bar'  %>
+<% end %>
+
+
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+<h2 class="heading">View Store Flavor</h2>
+<div class="row center-align">
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= new_store_flavor_path%>><i class="material-icons left">add</i>Add Store Flavor</a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%= edit_store_flavor_path(@store_flavor) %>><i class="material-icons left">edit</i>Edit</a></li>
+  <a class="waves-effect waves-red deep-orange darken-4 hoverable btn white-text" href=<%=  store_flavors_path %>><i class="material-icons left">arrow_back</i>Store-Flavor List</a></li>
+</div>
+<!--Create table headings with details of employees-->
+<table class="bordered highlight centered responsive-table">
+  <thead>
+    <tr>
+      <th class="heading">Store ID</th>
+      <th class="heading">Flavor ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <!--Create the body of the table with links to the fields of the schema -->
+  <tbody>
+      <tr>
+        <td class="heading"><%=  @store_flavor.store.id  %></td>
+        <td class="heading"><%=  @store_flavor.flavor.id  %></td>  
+        <!--3 buttons with each employee record to view info, edit and delete it respectively-->
+        <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= shift_jobs_path(@shift_job) %>><i class="material-icons left">info</i></a></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+
+
+<% if session[:role] == 'manager'%>
+<%= render partials/manager_footer  %>
+<% elsif session[:role] == 'admin' %>
+<%= render partials/admin_footer  %>
+<% end %>
+</html>

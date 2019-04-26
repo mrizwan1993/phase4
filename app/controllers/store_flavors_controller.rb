@@ -1,5 +1,4 @@
 class StoreFlavorsController < ApplicationController
-  layout 'admin_store_flavors.html.erb'
   before_action :set_store_flavor, only: [:show, :edit, :update, :destroy]
 
   # GET /store_flavors
@@ -11,6 +10,12 @@ class StoreFlavorsController < ApplicationController
   # GET /store_flavors/1
   # GET /store_flavors/1.json
   def show
+    if session[:role] == 'manager'
+    render partial: 'partials/manager_show_store_flavor'
+
+  else
+    render partial: 'partials/admin_show_store_flavor'
+  end
   end
 
   # GET /store_flavors/new
@@ -70,6 +75,6 @@ class StoreFlavorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_flavor_params
-      params.fetch(:store_flavor, {})
+      params.require(:store_flavor).permit(:store_id, :flavor_id)
     end
 end

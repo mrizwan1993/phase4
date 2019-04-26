@@ -28,7 +28,7 @@ $( document ).ready(function () {
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
 });
-
+$('.timepicker').timepicker();
 //the Jquery for the Select boxes in the forms
 $('select').formSelect();
 $('select').material_select();

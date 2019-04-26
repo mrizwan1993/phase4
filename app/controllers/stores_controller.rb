@@ -11,6 +11,15 @@ class StoresController < ApplicationController
   # GET /stores/1
   # GET /stores/1.json
   def show
+  if session[:role] == 'manager'
+    render partial: 'partials/manager_show_store'
+
+  elsif session[:role] == 'admin'
+    render partial: 'partials/admin_show_store'
+  
+  else
+    render partial: 'partials/employee_show_store'
+  end
   end
 
   # GET /stores/new

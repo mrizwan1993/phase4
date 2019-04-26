@@ -33,7 +33,7 @@
           <li><a class="dropdown-button white-text" href=<%= manager_shift_jobs_view_index_path %>>Shift-Jobs<i class="material-icons left">timelapse</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= manager_flavors_index_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= manager_store_flavors_view_index_path %>>Store Flavors<i class="material-icons left">view_list</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%=  show_employee_path(Employee.find(session[:user_id]))  %>>Profile<i class="material-icons left">person</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
         </ul>
       </div>
@@ -58,7 +58,7 @@
   
   <!--Create the body of the table with links to the fields of the schema -->
   <tbody>
-      <% @jobs = Jobs.all %>
+      <% @jobs = Job.all %>
     <% @jobs.each do |job| %>
       <tr>
         <td class="heading"><%= job.id %></td>
@@ -74,13 +74,29 @@
 
 
 
-<!--Add a footer to this page with an ID for styling purposes-->
-<footer class="page-footer" id="normal">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 center">
-        <%= render partial: 'partials/footer' %>
-      </div>
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= manager_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
 </footer>

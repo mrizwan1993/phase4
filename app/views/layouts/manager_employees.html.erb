@@ -33,7 +33,7 @@
           <li><a class="dropdown-button white-text" href=<%= manager_jobs_view_index_path %>>Jobs<i class="material-icons left">assignment</i></a></li>          
           <li><a class="dropdown-button white-text" href=<%= manager_flavors_index_path %>>Flavors<i class="material-icons left">view_list</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= manager_store_flavors_view_index_path %>>Store Flavors<i class="material-icons left">view_list</i></a></li>
-          <li><a class="dropdown-button white-text" href=<%= employee_path(Employee.find(session[:user_id]) ) %>>Profile<i class="material-icons left">person</i></a></li>
+          <li><a class="dropdown-button white-text" href=<%= show_employee_path(Employee.find(session[:user_id]))  %>>Profile<i class="material-icons left">person</i></a></li>
           <li><a class="dropdown-button white-text" href=<%= logout_path %>>Logout<i class="material-icons left">exit_to_app</i></a></li>
         </ul>
       </div>
@@ -42,6 +42,34 @@
 
 
 <p id="notice"><%= notice %></p>
+
+
+<!--Find all the employees that work at the same store as the manager-->
+<% user = User.find(session[:user_id]) %>    
+<% manager = Employee.find(user.employee.id) %>
+<% manager_assignments = Assignment.for_employee(manager) %>
+<% manager_stores = Array.new  %>
+<% manager_assignments.each do |assignment| %>
+    <% manager_stores << Store.find(assignment.store_id) %>
+<% end %>
+<% assignments_store = Array.new %>
+<% manager_stores.each do |store| %>
+    <% assignments_store << Assignment.for_store(store) %>
+<% end %>
+<% employees_all = Array.new %>
+<% assignments_store.each do |assignment_relation| %>
+    <% assignment_relation.each do |assignment| %>
+        <% puts "Assignment_id:"%>
+        <% puts "#{assignment.id}"  %>
+        <% employees_all << Employee.find(assignment.employee_id) %>
+    <% end %>
+<% end %>    
+<% employees_regulars = Array.new %>
+<% employees_all.each do |employee| %>
+    <% if employee.role == 'employee' %>
+        <% employees_regulars << employee %>
+    <% end %>
+<% end %>
 
 <h2 class="heading">All Employees</h2>
 <!--Create table headings with details of employees-->
@@ -61,8 +89,7 @@
   
   <!--Create the body of the table with links to the fields of the schema -->
   <tbody>
-    <% @employees = Employee.all %>
-    <% @employees.each do |employee| %>
+    <% employees_regulars.each do |employee| %>
       <tr>
         <td class="heading"><%= employee.first_name %></td>
         <td class="heading"><%= employee.last_name %></td>
@@ -79,15 +106,29 @@
 </table>
 
 
+<!--initializes the footer-->  
+<footer class="page-footer" style="position:fixed;bottom:0;left:0;width:100%;">
+  <!--puts the footer elements in a straight row-->
+  <div class="row">
+    <!--stretches the footer across the enter 12-columned page-->
+    <div class="col s12 center">
+<!--JQuery script source to help with "Scroll to Top" button - taken from a website -->
+<script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
 
-
-<!--Add a footer to this page with an ID for styling purposes-->
-<footer class="page-footer" id="normal">
-  <div class="container">
-    <div class="row">
-      <div class="col s12 center">
-        <%= render partial: 'partials/footer' %>
-      </div>
+<!--Div to hold the copyright and Webmaster info-->
+<div id="copyright" class="white-text">
+    <a class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable btn" href=<%= manager_hub_index_path %>><i class="material-icons left">home</i></a></li>
+    <a id="button" class="btn-floating waves-effect waves-red deep-orange darken-4 hoverable" href="#"><i class="material-icons left">vertical_align_top</i></a></li>
+    <br /><br/>
+    <div class="container">
+        Webmaster: <%= mail_to "mrizwan@qatar.cmu.edu", "Muhammad Taimur Rizwan", :encode => "javascript" %>
+        | © 2019 Copyright |
+        <a href=<%= about_index_path %>>About</a> |
+        <a href=<%= contact_index_path %>>Contact Us</a> |
+        <a href=<%= privacy_index_path %>>Privacy Policy</a>
+    </div>
+    <br /><br />
+</div>
     </div>
   </div>
 </footer>

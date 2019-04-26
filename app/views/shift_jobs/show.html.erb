@@ -1,4 +1,27 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_shift_job_path(@shift_job) %> |
-<%= link_to 'Back', shift_jobs_path %>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+<h2 class="heading">View Shift Job</h2>
+<!--Create table headings with details of employees-->
+<table class="bordered highlight centered responsive-table">
+  <thead>
+    <tr>
+      <th class="heading">Job ID</th>
+      <th class="heading">Shift ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <!--Create the body of the table with links to the fields of the schema -->
+  <tbody>
+      <tr>
+        <td class="heading"><%=  @shift_job.job.id  %></td>
+        <td class="heading"><%=  @shift_job.shift.id  %></td>  
+        <!--3 buttons with each employee record to view info, edit and delete it respectively-->
+        <td class="heading"><a class="waves-effect waves-circle waves-light deep-orange darken-4 btn-floating secondary-content" href=<%= shift_jobs_path(@shift_job) %>><i class="material-icons left">info</i></a></td>
+      </tr>
+  </tbody>
+</table>
+</div>
+
